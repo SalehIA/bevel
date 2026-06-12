@@ -22,31 +22,21 @@ portfolio/
 
 Each project folder needs a `project.json` or `project.txt` file:
 
-### JSON (recommended)
+### JSON (copy into each project folder as `project.json`)
 
 ```json
 {
   "name": "اسم المشروع",
-  "scope": "نطاق العمل",
-  "location": "الموقع",
-  "representative": {
-    "name": "اسم الممثل",
+  "description": "وصف المشروع",
+  "locationLink": "https://maps.google.com/?q=24.7136,46.6753",
+  "siteEngineer": {
+    "name": "اسم مهندس الموقع",
     "phone": "+966501234567"
-  },
-  "year": 2025,
-  "description": "وصف اختياري"
+  }
 }
 ```
 
-### Text (alternative)
-
-```
-name: اسم المشروع
-scope: نطاق العمل
-location: الموقع
-representative: اسم الممثل
-phone: +966501234567
-```
+Only fields present in the file are shown on the project page.
 
 Place photos (`.jpg`, `.png`, `.webp`) and videos (`.mp4`, `.webm`) directly in the project folder.
 

@@ -54,17 +54,25 @@ def drive_video_embed_url(file_id: str) -> str:
     return f"https://drive.google.com/file/d/{file_id}/preview"
 
 
+def drive_video_view_url(file_id: str) -> str:
+    return f"https://drive.google.com/file/d/{file_id}/view"
+
+
+def drive_video_stream_url(file_id: str) -> str:
+    return f"https://drive.google.com/uc?export=download&id={file_id}"
+
+
 def parse_txt_metadata(text: str) -> dict:
     data = {}
-    rep = {}
+    engineer = {}
     key_map = {
         "name": "name", "اسم": "name", "اسم المشروع": "name",
-        "nameen": "nameEn", "scope": "scope", "النطاق": "scope",
-        "location": "location", "الموقع": "location",
-        "representative": "representative_name", "الممثل": "representative_name",
-        "phone": "phone", "الهاتف": "phone",
-        "year": "year", "السنة": "year",
         "description": "description", "الوصف": "description",
+        "locationlink": "locationLink", "location_link": "locationLink",
+        "رابط الموقع": "locationLink", "رابط الخريطة": "locationLink",
+        "siteengineer_name": "engineer_name", "مهندس الموقع": "engineer_name",
+        "site_engineer": "engineer_name",
+        "phone": "engineer_phone", "الهاتف": "engineer_phone",
     }
     for line in text.splitlines():
         line = line.strip()
@@ -73,16 +81,14 @@ def parse_txt_metadata(text: str) -> dict:
         key, _, value = line.partition(":")
         mapped = key_map.get(key.strip().lower(), key.strip().lower())
         value = value.strip()
-        if mapped == "representative_name":
-            rep["name"] = value
-        elif mapped == "phone":
-            rep["phone"] = value
-        elif mapped == "year":
-            data["year"] = int(value) if value.isdigit() else value
+        if mapped == "engineer_name":
+            engineer["name"] = value
+        elif mapped == "engineer_phone":
+            engineer["phone"] = value
         else:
             data[mapped] = value
-    if rep:
-        data["representative"] = rep
+    if engineer:
+        data["siteEngineer"] = engineer
     return data
 
 
@@ -191,6 +197,8 @@ def build_projects_from_files(files) -> dict:
             tree[category][project_key]["photos"].append(entry)
         else:
             entry["url"] = drive_video_embed_url(item.id)
+            entry["viewUrl"] = drive_video_view_url(item.id)
+            entry["streamUrl"] = drive_video_stream_url(item.id)
             entry["embed"] = True
             tree[category][project_key]["videos"].append(entry)
 
@@ -214,19 +222,24 @@ def merge_local_metadata(tree: dict) -> dict:
             photos = sorted(data["photos"], key=lambda x: x["name"].lower())
             videos = sorted(data["videos"], key=lambda x: x["name"].lower())
 
-            projects.append({
+            project = {
                 "slug": slug,
                 "name": display_name,
-                "nameEn": meta.get("nameEn", ""),
-                "scope": meta.get("scope", ""),
-                "location": meta.get("location", ""),
-                "representative": meta.get("representative", {}),
-                "year": meta.get("year"),
-                "description": meta.get("description", ""),
                 "photos": photos,
                 "videos": videos,
                 "thumbnail": photos[0] if photos else None,
-            })
+            }
+            if meta.get("description"):
+                project["description"] = meta["description"]
+            if meta.get("locationLink"):
+                project["locationLink"] = meta["locationLink"]
+            engineer = meta.get("siteEngineer") or {}
+            if engineer.get("name") or engineer.get("phone"):
+                project["siteEngineer"] = {
+                    k: v for k, v in engineer.items() if v
+                }
+
+            projects.append(project)
 
         manifest["categories"][category] = projects
 

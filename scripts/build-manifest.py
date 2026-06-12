@@ -128,16 +128,17 @@ def build_manifest() -> dict:
             project = {
                 "slug": slug,
                 "name": meta.get("name") or slug.replace("-", " "),
-                "nameEn": meta.get("nameEn", ""),
-                "scope": meta.get("scope", ""),
-                "location": meta.get("location", ""),
-                "representative": meta.get("representative", {}),
-                "year": meta.get("year"),
-                "description": meta.get("description", ""),
                 "photos": photos,
                 "videos": videos,
                 "thumbnail": photos[0] if photos else None,
             }
+            if meta.get("description"):
+                project["description"] = meta["description"]
+            if meta.get("locationLink"):
+                project["locationLink"] = meta["locationLink"]
+            engineer = meta.get("siteEngineer") or {}
+            if engineer.get("name") or engineer.get("phone"):
+                project["siteEngineer"] = {k: v for k, v in engineer.items() if v}
             projects.append(project)
 
         manifest["categories"][category] = projects

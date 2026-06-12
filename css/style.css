@@ -66,20 +66,15 @@ img, video {
 }
 
 .logo {
-  display: flex;
+  display: inline-flex;
   align-items: center;
-  gap: 10px;
 }
 
-.logo-mark {
-  font-size: 1.5rem;
-  color: var(--accent-design);
-}
-
-.logo-text {
-  font-size: 1.25rem;
-  font-weight: 700;
-  letter-spacing: 0.05em;
+.logo-img {
+  height: 36px;
+  width: auto;
+  max-width: 140px;
+  object-fit: contain;
 }
 
 .tagline {
@@ -300,15 +295,19 @@ main {
   font-weight: 500;
 }
 
-.contact-btn {
+.action-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 20px;
+}
+
+.action-btn {
   display: flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-  margin-top: 20px;
   padding: 14px 20px;
-  background: var(--accent-build);
-  color: #fff;
   border-radius: var(--radius);
   font-weight: 600;
   font-size: 0.9375rem;
@@ -316,8 +315,77 @@ main {
   transition: opacity 0.15s;
 }
 
-.contact-btn:active {
+.action-btn:active {
   opacity: 0.85;
+}
+
+.action-btn-location {
+  background: var(--accent-design);
+  color: #1a1a1a;
+}
+
+.action-btn-phone {
+  background: var(--accent-build);
+  color: #fff;
+}
+
+.video-item {
+  border-radius: var(--radius);
+  overflow: hidden;
+  background: var(--bg-elevated);
+  border: 1px solid var(--border);
+}
+
+.video-player {
+  background: #000;
+}
+
+.video-play-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  width: 100%;
+  min-height: 160px;
+  padding: 24px 16px;
+  border: none;
+  background: linear-gradient(135deg, #1a1a1a, #2a2a2a);
+  color: var(--text);
+  cursor: pointer;
+  font-family: inherit;
+  font-size: 0.9375rem;
+}
+
+.video-play-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: var(--accent-build);
+  color: #fff;
+  font-size: 1.125rem;
+  padding-right: 3px;
+}
+
+.video-native,
+.video-embed {
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 50vh;
+  display: block;
+  border: none;
+  background: #000;
+}
+
+.video-open-link {
+  display: block;
+  text-align: center;
+  padding: 12px 16px;
+  font-size: 0.8125rem;
+  color: var(--accent-build);
+  text-decoration: underline;
 }
 
 .media-section {
@@ -365,19 +433,6 @@ main {
   display: flex;
   flex-direction: column;
   gap: 16px;
-}
-
-.video-item {
-  border-radius: var(--radius);
-  overflow: hidden;
-  background: #000;
-}
-
-.video-item iframe {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  border: none;
-  min-height: 220px;
 }
 
 .no-media {

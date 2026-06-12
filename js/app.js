@@ -5,6 +5,7 @@
 
 const App = (() => {
   const MANIFEST_URL = 'data/manifest.json';
+  const LOGO_SRC = 'css/bevel_red_white_png.png';
   const CATEGORIES = {
     'التصميم': { label: 'التصميم', icon: '✦' },
     'التنفيذ': { label: 'التنفيذ', icon: '◧' }
@@ -26,10 +27,6 @@ const App = (() => {
     return new URLSearchParams(window.location.search).get(name);
   }
 
-  function encodePath(...parts) {
-    return parts.map(p => encodeURIComponent(p)).join('/');
-  }
-
   function projectUrl(category, slug) {
     return `project.html?cat=${encodeURIComponent(category)}&project=${encodeURIComponent(slug)}`;
   }
@@ -47,16 +44,27 @@ const App = (() => {
     return `portfolio/${encodeURIComponent(category)}/${slugParts}/${encodeURIComponent(filename)}`;
   }
 
-  function isEmbedVideo(video) {
-    return video && typeof video === 'object' && video.embed;
-  }
-
   function formatPhone(phone) {
     return phone.replace(/\s/g, '');
   }
 
-  /* ── Home ── */
+  function hasValue(value) {
+    if (value === null || value === undefined) return false;
+    if (typeof value === 'string') return value.trim().length > 0;
+    return true;
+  }
+
+  function renderLogo(linkHome = true) {
+    const inner = `<img src="${LOGO_SRC}" alt="Bevel" class="logo-img" width="120" height="40">`;
+    return linkHome
+      ? `<a href="index.html" class="logo">${inner}</a>`
+      : `<div class="logo">${inner}</div>`;
+  }
+
   async function initHome() {
+    const logoEl = document.getElementById('site-logo');
+    if (logoEl) logoEl.innerHTML = renderLogo(true);
+
     try {
       const data = await loadManifest();
       document.querySelectorAll('.project-count').forEach(el => {
@@ -69,8 +77,10 @@ const App = (() => {
     }
   }
 
-  /* ── Category listing ── */
   async function initCategory() {
+    const logoEl = document.getElementById('site-logo');
+    if (logoEl) logoEl.innerHTML = renderLogo(true);
+
     const cat = getQueryParam('cat');
     const loading = document.getElementById('loading');
     const grid = document.getElementById('project-grid');
@@ -108,18 +118,24 @@ const App = (() => {
       ? `<img src="${mediaUrl(category, project.slug, project.thumbnail)}" alt="${escapeHtml(project.name)}" loading="lazy">`
       : `<div class="project-thumb-placeholder">${CATEGORIES[category]?.icon || '◆'}</div>`;
 
+    const subtitle = hasValue(project.description)
+      ? escapeHtml(project.description)
+      : '';
+
     return `
       <a href="${projectUrl(category, project.slug)}" class="project-card">
         <div class="project-thumb">${thumb}</div>
         <div class="project-card-body">
           <h3>${escapeHtml(project.name)}</h3>
-          <p>${escapeHtml(project.location || '')}</p>
+          ${subtitle ? `<p>${subtitle}</p>` : ''}
         </div>
       </a>`;
   }
 
-  /* ── Project detail ── */
   async function initProject() {
+    const logoEl = document.getElementById('site-logo');
+    if (logoEl) logoEl.innerHTML = renderLogo(true);
+
     const cat = getQueryParam('cat');
     const slug = getQueryParam('project');
     const loading = document.getElementById('loading');
@@ -148,6 +164,7 @@ const App = (() => {
       loading.hidden = true;
       detail.hidden = false;
       initLightbox();
+      initVideos();
     } catch (e) {
       loading.textContent = 'حدث خطأ في تحميل البيانات';
       console.error(e);
@@ -166,29 +183,51 @@ const App = (() => {
     }
 
     const info = document.getElementById('info-list');
-    const fields = [
-      { label: 'اسم المشروع', value: project.name },
-      { label: 'النطاق', value: project.scope },
-      { label: 'الموقع', value: project.location },
-      { label: 'الممثل', value: project.representative?.name },
-      { label: 'الهاتف', value: project.representative?.phone }
-    ];
+    const fields = [];
 
-    if (project.year) fields.splice(3, 0, { label: 'السنة', value: project.year });
-    if (project.description) fields.push({ label: 'الوصف', value: project.description });
+    if (hasValue(project.name)) {
+      fields.push({ label: 'اسم المشروع', value: project.name });
+    }
+    if (hasValue(project.description)) {
+      fields.push({ label: 'الوصف', value: project.description });
+    }
+    if (hasValue(project.siteEngineer?.name)) {
+      fields.push({ label: 'مهندس الموقع', value: project.siteEngineer.name });
+    }
 
     info.innerHTML = fields
-      .filter(f => f.value)
       .map(f => `<div><dt>${f.label}</dt><dd>${escapeHtml(String(f.value))}</dd></div>`)
       .join('');
 
-    const contactBtn = document.getElementById('contact-btn');
-    if (project.representative?.phone) {
-      contactBtn.href = `tel:${formatPhone(project.representative.phone)}`;
-      contactBtn.querySelector('#contact-text').textContent =
-        `اتصل بـ ${project.representative.name || 'الممثل'}`;
+    const actions = document.getElementById('action-buttons');
+    const actionItems = [];
+
+    if (hasValue(project.locationLink)) {
+      actionItems.push(`
+        <a class="action-btn action-btn-location" href="${escapeHtml(project.locationLink)}"
+           target="_blank" rel="noopener noreferrer">
+          <span>📍</span>
+          <span>الذهاب للموقع</span>
+        </a>`);
+    }
+
+    if (hasValue(project.siteEngineer?.phone)) {
+      const phone = formatPhone(project.siteEngineer.phone);
+      const label = project.siteEngineer.name
+        ? `اتصل بـ ${project.siteEngineer.name}`
+        : 'اتصل بمهندس الموقع';
+      actionItems.push(`
+        <a class="action-btn action-btn-phone" href="tel:${escapeHtml(phone)}">
+          <span>📞</span>
+          <span>${escapeHtml(label)}</span>
+        </a>`);
+    }
+
+    if (actionItems.length) {
+      actions.innerHTML = actionItems.join('');
+      actions.hidden = false;
     } else {
-      contactBtn.hidden = true;
+      actions.hidden = true;
     }
 
     const photos = project.photos || [];
@@ -201,7 +240,9 @@ const App = (() => {
         <button class="photo-item" data-index="${i}" aria-label="عرض الصورة ${i + 1}">
           <img src="${mediaUrl(category, project.slug, f)}" alt="" loading="lazy">
         </button>`).join('');
+      noPhotos.hidden = true;
     } else {
+      photoGrid.innerHTML = '';
       noPhotos.hidden = false;
     }
 
@@ -210,28 +251,75 @@ const App = (() => {
     const noVideos = document.getElementById('no-videos');
 
     if (videos.length) {
-      videoList.innerHTML = videos.map(v => {
-        if (isEmbedVideo(v)) {
-          return `
-        <div class="video-item">
-          <iframe src="${v.url}" allow="autoplay; encrypted-media" allowfullscreen loading="lazy"
-            title="${escapeHtml(v.name || 'فيديو')}"></iframe>
-        </div>`;
-        }
-        return `
-        <div class="video-item">
-          <video controls playsinline preload="metadata"
-            src="${mediaUrl(category, project.slug, v)}">
-            متصفحك لا يدعم تشغيل الفيديو
-          </video>
-        </div>`;
-      }).join('');
+      videoList.innerHTML = videos.map((v, i) => renderVideoItem(v, i)).join('');
+      noVideos.hidden = true;
     } else {
+      videoList.innerHTML = '';
       noVideos.hidden = false;
     }
   }
 
-  /* ── Lightbox ── */
+  function renderVideoItem(video, index) {
+    const embedUrl = video.url || '';
+    const viewUrl = video.viewUrl || embedUrl.replace('/preview', '/view');
+    const streamUrl = video.streamUrl || '';
+    const title = escapeHtml(video.name || `فيديو ${index + 1}`);
+
+    return `
+      <div class="video-item" data-index="${index}">
+        <div class="video-player" id="video-player-${index}">
+          <button type="button" class="video-play-btn" data-embed="${escapeHtml(embedUrl)}"
+            data-stream="${escapeHtml(streamUrl)}" data-view="${escapeHtml(viewUrl)}"
+            aria-label="تشغيل ${title}">
+            <span class="video-play-icon">▶</span>
+            <span class="video-play-label">${title}</span>
+          </button>
+        </div>
+        <a class="video-open-link" href="${escapeHtml(viewUrl)}" target="_blank"
+           rel="noopener noreferrer">فتح الفيديو في Google Drive</a>
+      </div>`;
+  }
+
+  function initVideos() {
+    document.getElementById('video-list')?.addEventListener('click', e => {
+      const btn = e.target.closest('.video-play-btn');
+      if (!btn || btn.dataset.loaded) return;
+
+      const embedUrl = btn.dataset.embed;
+      const streamUrl = btn.dataset.stream;
+      btn.dataset.loaded = '1';
+
+      if (streamUrl) {
+        const video = document.createElement('video');
+        video.controls = true;
+        video.playsInline = true;
+        video.preload = 'metadata';
+        video.className = 'video-native';
+        video.src = streamUrl;
+        video.textContent = 'متصفحك لا يدعم تشغيل الفيديو';
+        video.addEventListener('error', () => {
+          video.replaceWith(createVideoIframe(embedUrl));
+        });
+        btn.replaceWith(video);
+        video.play().catch(() => {});
+        return;
+      }
+
+      btn.replaceWith(createVideoIframe(embedUrl));
+    });
+  }
+
+  function createVideoIframe(src) {
+    const iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.className = 'video-embed';
+    iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
+    iframe.allowFullscreen = true;
+    iframe.loading = 'lazy';
+    iframe.title = 'فيديو المشروع';
+    return iframe;
+  }
+
   function initLightbox() {
     const lb = document.getElementById('lightbox');
     const img = document.getElementById('lightbox-img');
