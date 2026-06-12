@@ -13,7 +13,7 @@
   --radius-lg: 20px;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
-  --header-h: 140px;
+  --header-h: auto;
   --font: 'Cairo', system-ui, sans-serif;
 }
 
@@ -64,38 +64,32 @@ img, video {
 
 .header-row {
   display: flex;
+  flex-direction: row-reverse;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 12px;
   width: 100%;
-  min-height: 80px;
-  position: relative;
 }
 
 #site-logo {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  transform: translateY(-50%);
-  z-index: 2;
+  flex-shrink: 0;
 }
 
 .header-main {
   flex: 1;
   min-width: 0;
-  padding-left: 240px;
+}
+
+.logo-img {
+  height: 90px;
+  width: auto;
+  max-width: 280px;
+  object-fit: contain;
 }
 
 .logo {
   display: inline-flex;
   align-items: center;
-}
-
-.logo-img {
-  height: 125px;
-  width: auto;
-  max-width: 420px;
-  object-fit: contain;
 }
 
 .tagline {
@@ -481,6 +475,49 @@ main {
   inset: 0;
   z-index: 3000;
   background: #000;
+  width: 100vw;
+  height: 100dvh;
+}
+
+.video-feed-scroll {
+  height: 100dvh;
+  width: 100vw;
+  overflow-y: scroll;
+  scroll-snap-type: y mandatory;
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior-y: contain;
+  scroll-behavior: smooth;
+}
+
+.video-feed-slide {
+  height: 100dvh;
+  width: 100vw;
+  scroll-snap-align: start;
+  scroll-snap-stop: always;
+  position: relative;
+  background: #000;
+  overflow: hidden;
+}
+
+.video-slide-inner {
+  width: 100vw;
+  height: 100dvh;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+}
+
+.video-feed .feed-video {
+  width: 100vw !important;
+  height: 100dvh !important;
+  max-width: none !important;
+  max-height: none !important;
+  min-width: 100%;
+  min-height: 100%;
+  object-fit: contain;
+  background: #000;
 }
 
 .video-feed[hidden] {
@@ -501,42 +538,6 @@ main {
   font-size: 1.75rem;
   line-height: 1;
   cursor: pointer;
-}
-
-.video-feed-scroll {
-  height: 100dvh;
-  overflow-y: scroll;
-  scroll-snap-type: y mandatory;
-  -webkit-overflow-scrolling: touch;
-  overscroll-behavior-y: contain;
-  scroll-behavior: smooth;
-}
-
-.video-feed-slide {
-  height: 100dvh;
-  width: 100%;
-  scroll-snap-align: start;
-  scroll-snap-stop: always;
-  position: relative;
-  background: #000;
-  overflow: hidden;
-}
-
-.video-slide-inner {
-  width: 100%;
-  height: 100%;
-  position: relative;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.feed-video {
-  width: 100%;
-  height: 100%;
-  max-height: 100dvh;
-  object-fit: cover;
-  background: #000;
 }
 
 .video-tap-overlay {

@@ -266,7 +266,7 @@
       },
       {
         "slug": "مشروع تشطيب جوس برس",
-        "name": "مشروع تشطيب جوس برس",
+        "name": "\\f1 \\uc0\\u1575 \\u1587 \\u1605 \n\\f0  \n\\f1 \\uc0\\u1575 \\u1604 \\u1605 \\u1588 \\u1585 \\u1608 \\u1593 \n\\f0",
         "photos": [
           {
             "name": "AF1QipP9_I4gDaz54jW7GKu498PHREDer7jQvOa7BLYg=s773-k-no.jpeg",
@@ -379,6 +379,12 @@
           "name": "AF1QipP9_I4gDaz54jW7GKu498PHREDer7jQvOa7BLYg=s773-k-no.jpeg",
           "id": "1qLgLrAsukVqTyKBQTDZttmfLyB656icx",
           "url": "https://drive.google.com/thumbnail?id=1qLgLrAsukVqTyKBQTDZttmfLyB656icx&sz=w1200"
+        },
+        "description": "\\f1 \\uc0\\u1608 \\u1589 \\u1601 \n\\f0  \n\\f1 \\uc0\\u1575 \\u1604 \\u1605 \\u1588 \\u1585 \\u1608 \\u1593 \n\\f0",
+        "locationLink": "https://maps.google.com/?q=24.7136,46.6753",
+        "siteEngineer": {
+          "name": "\\f1 \\uc0\\u1575 \\u1587 \\u1605 \n\\f0  \n\\f1 \\uc0\\u1605 \\u1607 \\u1606 \\u1583 \\u1587 \n\\f0  \n\\f1 \\uc0\\u1575 \\u1604 \\u1605 \\u1608 \\u1602 \\u1593 \n\\f0",
+          "phone": "+966501234567"
         }
       },
       {
@@ -631,7 +637,16 @@
             "url": "https://drive.google.com/thumbnail?id=1pvyLWX-jjbJ_kQh7lWKLkW6nmsIgugpB&sz=w1200"
           }
         ],
-        "videos": [],
+        "videos": [
+          {
+            "name": "videoplayback.mp4",
+            "id": "1wNekpVTaQtWrnloPJovQXcw1nZYf0ovi",
+            "url": "https://drive.google.com/file/d/1wNekpVTaQtWrnloPJovQXcw1nZYf0ovi/preview",
+            "viewUrl": "https://drive.google.com/file/d/1wNekpVTaQtWrnloPJovQXcw1nZYf0ovi/view",
+            "streamUrl": "https://drive.google.com/uc?export=download&id=1wNekpVTaQtWrnloPJovQXcw1nZYf0ovi",
+            "embed": true
+          }
+        ],
         "thumbnail": {
           "name": "AF1QipMPVFrs8CNLw2k83VxIekmAN6tY1icYAIHFj--7=s1354-k-no.jpeg",
           "id": "1-w7PTThgIw_kwI6sYJHeUXcO6-3m45zM",

@@ -36,6 +36,23 @@ VIDEO_EXT = {".mp4", ".webm", ".mov", ".m4v"}
 META_NAMES = {"project.json", "project.txt", "info.json", "info.txt"}
 
 
+def is_meta_file(name: str) -> bool:
+    lower = normalize_name(name).lower()
+    if lower in META_NAMES:
+        return True
+    if lower.startswith("project.json"):
+        return True
+    if lower.endswith(".json"):
+        return True
+    return False
+
+
+def project_key_from_parts(parts: list[str]) -> Optional[str]:
+    if len(parts) < 3:
+        return None
+    return parts[1]
+
+
 def normalize_name(text: str) -> str:
     """Strip invisible Unicode bidi marks from Google Drive folder names."""
     return re.sub(r"[\u200e\u200f\u202a-\u202e]", "", text).strip()
@@ -159,14 +176,27 @@ def parse_metadata_content(text: str, source: str) -> dict:
 
 
 def load_local_metadata(project_dir: Path) -> dict:
-    for name in ("project.json", "info.json"):
+    candidates = []
+    for name in ("project.json", "info.json", "project.txt", "info.txt"):
         path = project_dir / name
         if path.exists():
-            return parse_metadata_content(path.read_text(encoding="utf-8"), str(path))
-    for name in ("project.txt", "info.txt"):
-        path = project_dir / name
-        if path.exists():
-            return parse_txt_metadata(path.read_text(encoding="utf-8"))
+            candidates.append(path)
+    candidates.extend(sorted(project_dir.glob("*.json")))
+    candidates.extend(sorted(project_dir.glob("project.json*")))
+
+    seen = set()
+    for path in candidates:
+        if path in seen or not path.is_file():
+            continue
+        seen.add(path)
+        if path.suffix.lower() in {".json"} or path.name.lower().startswith("project.json"):
+            meta = parse_metadata_content(path.read_text(encoding="utf-8", errors="replace"), str(path))
+            if meta:
+                return meta
+        elif path.suffix.lower() == ".txt":
+            meta = parse_txt_metadata(path.read_text(encoding="utf-8", errors="replace"))
+            if meta:
+                return meta
     return {}
 
 
@@ -179,14 +209,14 @@ def find_metadata_dir(category: str, project_key: str) -> Optional[Path]:
     if direct.exists():
         return direct
 
-    for path in PORTFOLIO_DIR.rglob("project.json"):
+    for path in PORTFOLIO_DIR.rglob("*"):
+        if not path.is_file() or not is_meta_file(path.name):
+            continue
         rel = normalize_name(str(path.parent.relative_to(PORTFOLIO_DIR)).replace("\\", "/"))
-        if rel == expected:
-            return path.parent
-    for path in PORTFOLIO_DIR.rglob("project.txt"):
-        rel = normalize_name(str(path.parent.relative_to(PORTFOLIO_DIR)).replace("\\", "/"))
-        if rel == expected:
-            return path.parent
+        if rel == expected or rel.endswith(f"/{project_key}") or rel.split("/")[0] == project_key:
+            meta = load_local_metadata(path.parent)
+            if meta:
+                return path.parent
     return None
 
 
@@ -220,35 +250,44 @@ def download_metadata_files(files) -> dict:
     import gdown
 
     if PORTFOLIO_DIR.exists():
-        shutil.rmtree(PORTFOLIO_DIR)
-    PORTFOLIO_DIR.mkdir(parents=True)
+        for item in PORTFOLIO_DIR.iterdir():
+            if item.name == "project.json.example":
+                continue
+            if item.is_dir():
+                shutil.rmtree(item)
+            else:
+                item.unlink()
+    else:
+        PORTFOLIO_DIR.mkdir(parents=True)
 
-    meta_files = [f for f in files if Path(f.path).name.lower() in META_NAMES]
+    meta_files = [f for f in files if is_meta_file(Path(f.path).name)]
     print(f"Downloading {len(meta_files)} metadata file(s)...")
     meta_cache: dict[tuple[str, str], dict] = {}
 
     for item in meta_files:
         parts = [normalize_name(p) for p in Path(item.path).parts]
-        if len(parts) < 2:
+        project_key = project_key_from_parts(parts)
+        if not project_key:
             continue
         category = parts[0]
         if category not in CATEGORIES:
             continue
-        project_key = "/".join(parts[1:-1]) if len(parts) > 2 else parts[1]
-        filename = parts[-1]
 
-        dest = PORTFOLIO_DIR / category / Path(*project_key.split("/")) / filename
-        dest.parent.mkdir(parents=True, exist_ok=True)
+        dest_dir = PORTFOLIO_DIR / category / project_key
+        dest_dir.mkdir(parents=True, exist_ok=True)
+        dest = dest_dir / "project.json"
         gdown.download(
             id=item.id,
             output=str(dest),
             quiet=True,
             use_cookies=False,
         )
-        meta = load_local_metadata(dest.parent)
+        meta = load_local_metadata(dest_dir)
         if meta:
             meta_cache[(category, project_key)] = meta
             print(f"  Loaded metadata: {category}/{project_key}")
+        else:
+            print(f"  Warning: could not parse metadata for {category}/{project_key}")
 
     return meta_cache
 
@@ -270,26 +309,21 @@ def build_projects_from_files(files) -> dict:
             continue
 
         filename = parts[-1]
-        if filename.lower() in META_NAMES:
-            rel = "/".join(parts[1:-1]) if len(parts) > 2 else parts[1]
-            if rel.endswith("/"):
-                rel = rel.rstrip("/")
-            # metadata at project root
-            project_key = rel if len(parts) > 2 else parts[1]
-            if project_key not in tree[category]:
-                tree[category][project_key] = {"photos": [], "videos": [], "meta_path": None}
+        if is_meta_file(filename):
+            project_key = project_key_from_parts(parts)
+            if project_key and category in CATEGORIES:
+                if project_key not in tree[category]:
+                    tree[category][project_key] = {"photos": [], "videos": [], "meta_path": None}
             continue
 
         ext = Path(filename).suffix.lower()
         if ext not in IMAGE_EXT and ext not in VIDEO_EXT:
             continue
 
-        if len(parts) == 2:
-            # file directly in category — skip
+        project_key = project_key_from_parts(parts)
+        if not project_key:
             continue
 
-        rel_parts = parts[1:-1]
-        project_key = "/".join(rel_parts)
         if project_key not in tree[category]:
             tree[category][project_key] = {"photos": [], "videos": [], "meta_path": None}
 
@@ -391,6 +425,13 @@ def main():
     print(f"✓ Manifest written to {OUTPUT.relative_to(ROOT)}")
     for cat, projects in manifest["categories"].items():
         print(f"    {cat}: {len(projects)} project(s)")
+        for project in projects:
+            photo_count = len(project.get("photos", []))
+            if photo_count >= 50:
+                print(
+                    f"      Note: {project['slug']} has {photo_count} photos "
+                    "(Google Drive sync limit is ~50 files per folder; use subfolders for more)"
+                )
     print(f"  Total projects: {total}")
 
     if total == 0:
