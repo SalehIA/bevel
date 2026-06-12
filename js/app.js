@@ -19,7 +19,30 @@ const App = (() => {
 
   async function loadManifest() {
     if (manifest) return manifest;
-    const res = await fetch(MANIFEST_URL);
+
+    const configRes = await fetch('drive.config.json');
+    const config = await configRes.json();
+
+    document.querySelectorAll('.loading').forEach(el => {
+      el.textContent = 'جاري التحميل من Google Drive...';
+    });
+
+    if (config.appsScriptUrl) {
+      const sep = config.appsScriptUrl.includes('?') ? '&' : '?';
+      const url = `${config.appsScriptUrl}${sep}t=${Date.now()}`;
+      const res = await fetch(url);
+      if (!res.ok) throw new Error('Failed to load portfolio from Google Drive');
+      manifest = await res.json();
+      if (manifest.error) throw new Error(manifest.error);
+      return manifest;
+    }
+
+    if (config.apiKey && typeof DriveLoader !== 'undefined') {
+      manifest = await DriveLoader.buildManifest(config);
+      return manifest;
+    }
+
+    const res = await fetch(`${MANIFEST_URL}?t=${Date.now()}`);
     if (!res.ok) throw new Error('Failed to load portfolio data');
     manifest = await res.json();
     return manifest;

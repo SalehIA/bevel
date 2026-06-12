@@ -118,11 +118,16 @@ def build_manifest() -> dict:
 
             photos = sorted(
                 f.name for f in project_dir.iterdir()
-                if f.is_file() and f.suffix.lower() in IMAGE_EXT
+                if f.is_file() and f.suffix.lower() in IMAGE_EXT and f.stem.lower() != "thumbnail"
             )
             videos = sorted(
                 f.name for f in project_dir.iterdir()
                 if f.is_file() and f.suffix.lower() in VIDEO_EXT
+            )
+            thumb_file = next(
+                (f.name for f in project_dir.iterdir()
+                 if f.is_file() and f.suffix.lower() in IMAGE_EXT and f.stem.lower() == "thumbnail"),
+                None
             )
 
             project = {
@@ -130,7 +135,7 @@ def build_manifest() -> dict:
                 "name": meta.get("name") or slug.replace("-", " "),
                 "photos": photos,
                 "videos": videos,
-                "thumbnail": photos[0] if photos else None,
+                "thumbnail": thumb_file or (photos[0] if photos else None),
             }
             if meta.get("description"):
                 project["description"] = meta["description"]

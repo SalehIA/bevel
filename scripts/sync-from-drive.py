@@ -47,6 +47,10 @@ def is_meta_file(name: str) -> bool:
     return False
 
 
+def is_thumbnail_file(name: str) -> bool:
+    return Path(normalize_name(name)).stem.lower() == "thumbnail"
+
+
 def project_key_from_parts(parts: list[str]) -> Optional[str]:
     if len(parts) < 3:
         return None
@@ -313,7 +317,7 @@ def build_projects_from_files(files) -> dict:
             project_key = project_key_from_parts(parts)
             if project_key and category in CATEGORIES:
                 if project_key not in tree[category]:
-                    tree[category][project_key] = {"photos": [], "videos": [], "meta_path": None}
+                    tree[category][project_key] = {"photos": [], "videos": [], "meta_path": None, "thumbnail": None}
             continue
 
         ext = Path(filename).suffix.lower()
@@ -325,12 +329,15 @@ def build_projects_from_files(files) -> dict:
             continue
 
         if project_key not in tree[category]:
-            tree[category][project_key] = {"photos": [], "videos": [], "meta_path": None}
+            tree[category][project_key] = {"photos": [], "videos": [], "meta_path": None, "thumbnail": None}
 
         entry = {"name": filename, "id": item.id}
         if ext in IMAGE_EXT:
             entry["url"] = drive_image_url(item.id)
-            tree[category][project_key]["photos"].append(entry)
+            if is_thumbnail_file(filename):
+                tree[category][project_key]["thumbnail"] = entry
+            else:
+                tree[category][project_key]["photos"].append(entry)
         else:
             entry["url"] = drive_video_embed_url(item.id)
             entry["viewUrl"] = drive_video_view_url(item.id)
@@ -367,7 +374,7 @@ def merge_local_metadata(tree: dict, meta_cache: Optional[dict] = None) -> dict:
                 "name": display_name,
                 "photos": photos,
                 "videos": videos,
-                "thumbnail": photos[0] if photos else None,
+                "thumbnail": data.get("thumbnail") or (photos[0] if photos else None),
             }
             if meta.get("description"):
                 project["description"] = meta["description"]

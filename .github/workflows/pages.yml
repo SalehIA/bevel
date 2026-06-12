@@ -23,15 +23,6 @@ jobs:
     steps:
       - uses: actions/checkout@v4
 
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-
-      - name: Sync portfolio from Google Drive
-        run: |
-          pip install gdown
-          python scripts/sync-from-drive.py
-
       - uses: actions/upload-pages-artifact@v3
         with:
           path: .

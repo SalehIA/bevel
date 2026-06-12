@@ -1,9 +1,12 @@
-name: Sync Portfolio from Google Drive
+# Optional: rebuild static manifest from Drive (fallback when no browser API key).
+# The live site reads Google Drive directly in the browser when apiKey is set.
+
+name: Sync portfolio manifest (optional)
 
 on:
-  workflow_dispatch:
   schedule:
-    - cron: '0 6 * * *'  # Daily at 06:00 UTC
+    - cron: '0 6 * * *'
+  workflow_dispatch:
 
 permissions:
   contents: write
@@ -19,16 +22,14 @@ jobs:
           python-version: '3.12'
 
       - name: Sync from Google Drive
-        env:
-          DRIVE_FOLDER_ID: ${{ secrets.DRIVE_FOLDER_ID }}
         run: |
           pip install gdown
-          python scripts/sync-from-drive.py --folder-id "${DRIVE_FOLDER_ID:-1mwN5fOhas66MznQOWGG1hlyoOVmkADyV}"
+          python scripts/sync-from-drive.py
 
-      - name: Commit changes
+      - name: Commit manifest if changed
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
-          git add portfolio/ data/manifest.json
-          git diff --staged --quiet || git commit -m "Sync portfolio from Google Drive"
+          git add data/manifest.json
+          git diff --staged --quiet || git commit -m "chore: update manifest from Google Drive"
           git push
