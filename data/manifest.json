@@ -1,0 +1,653 @@
+{
+  "categories": {
+    "التصميم": [],
+    "التنفيذ": [
+      {
+        "slug": "مشروع تشطيب بوبايز شارع الأحساء",
+        "name": "مشروع تشطيب بوبايز شارع الأحساء",
+        "nameEn": "",
+        "scope": "",
+        "location": "",
+        "representative": {},
+        "year": null,
+        "description": "",
+        "photos": [
+          {
+            "name": "APNQkAE-PzNC9Y0V_CBV8EI4YP04fzGrfMf1sNFG4ZOIftgnpFAwRnGtcd7gGMLGCioOo5pHYn2jQIxhS1zL3dVyaIDE64bfgd96_seRPrBUKIqkRcN8OxW_YN9fHNbNBZCobC7t9TU=s1016-k-no.jpeg",
+            "id": "1SODAEnDN0zls0ngPcVZJGTi5CK7tPrKH",
+            "url": "https://drive.google.com/thumbnail?id=1SODAEnDN0zls0ngPcVZJGTi5CK7tPrKH&sz=w1200"
+          },
+          {
+            "name": "APNQkAE-wKMIokWsynFm1g3PUIZuuC1Lj8SzEOUacHctuK2NvQ-S8h_tScDWvnRO_SizfR5UXyQBq914tp2k-CYkgbdn-Jh6k4iFE25kiqOgqO8cTh7vYdzL3Rzh7UDKNHjchRATKNLm=s1354-k-no.jpeg",
+            "id": "1PAy4c_FLJUpPl_HT_w5UyTvBIOTrijzK",
+            "url": "https://drive.google.com/thumbnail?id=1PAy4c_FLJUpPl_HT_w5UyTvBIOTrijzK&sz=w1200"
+          },
+          {
+            "name": "APNQkAE-wtaWJJkyaxWae6ALGHz0TWUlrK5wQVYdqKfSwGx6zGPlhPl_rrpE_1Vx3riuWY62JhCu5s1uLTnD3l9bvKmKKBUF8BmQDAGUoSCws8zXDupF_5PxY-qlo_YETmHrfnykwPGBmQ=s812-k-no.jpeg",
+            "id": "1wXACcgWl0pULD_hmNPPFUUwQVPi3hxIH",
+            "url": "https://drive.google.com/thumbnail?id=1wXACcgWl0pULD_hmNPPFUUwQVPi3hxIH&sz=w1200"
+          },
+          {
+            "name": "APNQkAE0LGHvu4liJlHFUW7LLclysNvvMoqUIatLiL3P3q4ANkW6ChXF_-u89hnfyVTuEH0NFzEENO4XVBjbIibx12vf2Ox6_ODWT8tmN6R4Sdn4Gb5ScKaKxhKQLINq13wbvc2RDq0=s695-k-no.jpeg",
+            "id": "1V-TZB-LZ7MXgH3eGtM2c9M2wLxtPNkvJ",
+            "url": "https://drive.google.com/thumbnail?id=1V-TZB-LZ7MXgH3eGtM2c9M2wLxtPNkvJ&sz=w1200"
+          },
+          {
+            "name": "APNQkAE42RgVPNjNf4eaV4rziD08EAAJGsJQ-9zp0HUunvH9Do4XN8JxX_0qUjFH8gGcbRE3Qiraiv-2YsmdLR1tWlb2_1BsDTR3SsjCuMvblCEImVh4s6Dw7Kk8w7StmKKcbDy7oN5D=s773-k-no.jpeg",
+            "id": "1ExNpE5V02v6dfygrBPqhy3PVhpfVyIbe",
+            "url": "https://drive.google.com/thumbnail?id=1ExNpE5V02v6dfygrBPqhy3PVhpfVyIbe&sz=w1200"
+          },
+          {
+            "name": "APNQkAE4ENoHpBJ0wxv0yj74z9RGok22rOraXRlzFE62Xdp01-JMl6sxPvKyGSVWOkwZ_eQ4w5EW9X3Xwruw40us-53EiRS0zaDdygMUUFMp71HemaLA7RVhlSkx8kfNjdD_UUrRKab0=s1016-k-no.jpeg",
+            "id": "1r0YKQTjeXheQy03NZvUNat_3faj0agw9",
+            "url": "https://drive.google.com/thumbnail?id=1r0YKQTjeXheQy03NZvUNat_3faj0agw9&sz=w1200"
+          },
+          {
+            "name": "APNQkAE5PZTtCszldlkVKOF3Ksw9-aV5Mf67G0pcs-94DV9SmLKQ_-0vWLOox-iUAqtIAJMZ9txu2KoApaIstVr2_gHOyrVBut_DhDFIlteeYLgrn4ylFBTlyZa9C8s6aLLr8FSnxwES=s1016-k-no.jpeg",
+            "id": "1tSsi5Qn72f8hwfQ23Mcy_KLj3qUy57rv",
+            "url": "https://drive.google.com/thumbnail?id=1tSsi5Qn72f8hwfQ23Mcy_KLj3qUy57rv&sz=w1200"
+          },
+          {
+            "name": "APNQkAE6gsTuEFnKba-cZKBxpM_JRPMuGmaZCqumzOKVKAo4ZiHM1cB6DHO3DUUJQzctriKCEINxawNzS3cCdbYLcdw7Xx3TplhtEtf1qfRBvlOU__0bjXpgH98gZh-cFfgWeTz4OvqFOw=s1354-k-no.jpeg",
+            "id": "1pN0DNtEim31z2mmTOo_27RB_jI7BArSS",
+            "url": "https://drive.google.com/thumbnail?id=1pN0DNtEim31z2mmTOo_27RB_jI7BArSS&sz=w1200"
+          },
+          {
+            "name": "APNQkAE75RwlyetMRcgTuVgd0h_KGLVXxdHZfg7gwLaxqeUX4mHJ_Fd7yQPyDflP_3MImNLTMmk0WPgjL6rWYwA-g9khGvQd5Abk434elPz9EQc8aNJG2sbmH0Eoxb8FkJ07KDIkE2IP=s1031-k-no.jpeg",
+            "id": "16XKTqOh_N87T1ubkWaTjrnYQI7m-_CN2",
+            "url": "https://drive.google.com/thumbnail?id=16XKTqOh_N87T1ubkWaTjrnYQI7m-_CN2&sz=w1200"
+          },
+          {
+            "name": "APNQkAE7jBYyiin6u5vpfDf-wgkZU9A5OWuS6WXVf1sU3vAZT07GmwZoisL35BRsS7NFnK3OZn9MOfjVZ9BWiIXAs45tOPJgVy9wMHcavMCvSh-8-mOGY2PJJrbv3zIGofg-YrUz50JRl4xphhcH=s773-k-no.jpeg",
+            "id": "1SsY-ZZNRtYBnTF_RNn0b37q7lbsalEf7",
+            "url": "https://drive.google.com/thumbnail?id=1SsY-ZZNRtYBnTF_RNn0b37q7lbsalEf7&sz=w1200"
+          },
+          {
+            "name": "APNQkAEAhQY-xB34qou2dGwywjSVbhsxLr36aEUabK6CgjmPqhT5M1y9p9SYfDhCbQvuFDjm0A6VjtPZBfYn91UHM0k4mQbIXmhamIwCQINibInOJVf7Iu5MQXJzSP7ZSA3zN3fNHWhmlGKzg8w4=s773-k-no.jpeg",
+            "id": "12JBylcRs0r-ynxTs4bcKxTJqRPTMZ54o",
+            "url": "https://drive.google.com/thumbnail?id=12JBylcRs0r-ynxTs4bcKxTJqRPTMZ54o&sz=w1200"
+          },
+          {
+            "name": "APNQkAEAtduEY4G2C9MvCt3Hw2dV6PgbiCzWJokYlFEtEECdHAQJAyUgZnLcdRI5QKfLPNaAuukLsfAWJVrZQtMdxyh3n2XPfsgdzemuzWWRMMvPahDsfa8O4BLqmPun7RSHtRDkDR-oU1K5EbI=s773-k-no.jpeg",
+            "id": "1rd5g2t97L3xnHgJMTV8KQORk0WUigQS4",
+            "url": "https://drive.google.com/thumbnail?id=1rd5g2t97L3xnHgJMTV8KQORk0WUigQS4&sz=w1200"
+          },
+          {
+            "name": "APNQkAEATO5O0k_6QQERYNgsM9tHjn5haWLBdNfKclu_blvQu-6i7-cr-D4-ka-c_xXgTOOFju2tQkoSXagx8fOKwnlDWM_hbdrNfWDD3z8toIj3HQgwNmiXrAH0PdxM6DO1nzzurIOh=s901-k-no.jpeg",
+            "id": "1teM-a1oZq8IVFGDk6c8_23dWis656YLR",
+            "url": "https://drive.google.com/thumbnail?id=1teM-a1oZq8IVFGDk6c8_23dWis656YLR&sz=w1200"
+          },
+          {
+            "name": "APNQkAEB_OKzOOJCpk6TKnsl__wuDZ9C7Ltd1nDRKwLCKD5JMu7OXYaNYo4noFCTVSwssOoK2AiKvrhO7Il_aQyyKOLZNEPV30fJBc29Oh7h0GE30A8aei4HawyFOmAyY3VcnZ6ZRCNE6bPEjJqI=s812-k-no.jpeg",
+            "id": "1AlYviu9VGpH7hrij9j97ARk3MkSZbSs7",
+            "url": "https://drive.google.com/thumbnail?id=1AlYviu9VGpH7hrij9j97ARk3MkSZbSs7&sz=w1200"
+          },
+          {
+            "name": "APNQkAEDsKfySAwEkk4eqoq6Gc94jvMIklZ4iMGrAbM2qkw3y8uws9vfBzkXjBcQ-BNBm03mPlFuu0RGD2vVYGRCEhMRZXrLMrBeOwSXrKobW7hXG8ozeqLtd39zRcc-VYuf-Z20Bz5nXmj52rZJ=s1016-k-no.jpeg",
+            "id": "1ia_1JCi3f5Kmnt2h4QQAxyBtezB1wPr8",
+            "url": "https://drive.google.com/thumbnail?id=1ia_1JCi3f5Kmnt2h4QQAxyBtezB1wPr8&sz=w1200"
+          },
+          {
+            "name": "APNQkAEeAVPV6J-UXOXbmTqltMcFEAhwvsVFTlcBSN-JEQEao0ImYpe8r16kyEHphwlTIvwwVM1qOYHwgK0-PIAAr66mTM66PLfy2AXNza5O11Eg8I5huXbsBkO6ZfqfaPcIZCBprUWH=s812-k-no.jpeg",
+            "id": "1lCisggc2IOFJA0ZRbq7M1cuZQZtaHhmx",
+            "url": "https://drive.google.com/thumbnail?id=1lCisggc2IOFJA0ZRbq7M1cuZQZtaHhmx&sz=w1200"
+          },
+          {
+            "name": "APNQkAEf58yUTr6iTWnmueD3QWYOtFwvSnskk5-Blsy6uR0nMKB2ObFW9LgklEPnmP_poxbuS4kQJicAot4yd7_JAm8e54SyyVXYW-WZjVxv3msEwNzR1DFScouczkqR2f7QFUME0MeEybTmuV-D=s773-k-no.jpeg",
+            "id": "1gjHNbiph4YigctV0nSgOLsDIrOhRmIie",
+            "url": "https://drive.google.com/thumbnail?id=1gjHNbiph4YigctV0nSgOLsDIrOhRmIie&sz=w1200"
+          },
+          {
+            "name": "APNQkAEgG1NIwbopBMgiJ6Pfqi4CKD2kqRPGD36xYHi1-Gs_1eJYHtuDR6wkYneoXH0E-77_ysXHa1duXIHWHpq1ogw5P0lUyNmBKH4pQgOFU1t-ZKsrZHG7-8cpIqEsO6ONmUAf2PBMV1CGWH4=s1016-k-no.jpeg",
+            "id": "1AHuG_4Sju5ZyHs_gdfzbElEgSbqFxRDD",
+            "url": "https://drive.google.com/thumbnail?id=1AHuG_4Sju5ZyHs_gdfzbElEgSbqFxRDD&sz=w1200"
+          },
+          {
+            "name": "APNQkAEj5u20L97WxizibZPjpUHtxaROCk48n3L7pGM5PwXaXwBq7N8k_zJwLQr_saelwcRalmeMhiKYatSRuOxXw9rN3i8BRReRONu5KQKt73CaZxdjVMLmObu_s--u-pNL_JwvRSQi-w=s1354-k-no.jpeg",
+            "id": "1tAHc5VXjO89lFEUEFkWZupl0BJPA67Cl",
+            "url": "https://drive.google.com/thumbnail?id=1tAHc5VXjO89lFEUEFkWZupl0BJPA67Cl&sz=w1200"
+          },
+          {
+            "name": "APNQkAELEDxW6z-cuiMaQ5xGBGyO3xKMEzL7OaaGa1Z1jo5q9EiSWZ-xKC-v3u4ANYesA7i0TZiHtKifbLq0PnuZGdnAKDyQ0BdNLGdriGlMel1a1bTkFRRVAkhdbfOBDu1gpQgN4nXH=s1016-k-no.jpeg",
+            "id": "1WMyPilAHGdhEMqrxjV8PoF-Att5CwX53",
+            "url": "https://drive.google.com/thumbnail?id=1WMyPilAHGdhEMqrxjV8PoF-Att5CwX53&sz=w1200"
+          },
+          {
+            "name": "APNQkAElNknhfpiXj_Y3RGTJbxdeuDq62dFDE7w6zLxXcudOWwIgxIrZ8XSPar4BuZrEVlOBhkx24jDgykDfpBic4wmBPKJoJArr43I0sSGJfcc0NyxCrRPOIC9F0K-NGgPWukJeuKWqcRiE-Ze9=s1016-k-no.jpeg",
+            "id": "1Lnml6fZObvlnEVcvbyAWBZA55PEnQ1-y",
+            "url": "https://drive.google.com/thumbnail?id=1Lnml6fZObvlnEVcvbyAWBZA55PEnQ1-y&sz=w1200"
+          },
+          {
+            "name": "APNQkAEMiBCwMZHNCi7GvpY3Kzl2z7XBMDcOVRAVoiZp5TrxbtJ5UORzqEueUyOwJnBKImuxFLDK1dV6PwuCepf6QEqK5E1X8I4wHuqW1fAhzgTQbCeuMhGI_PsikrvAg7PhJyTFEIGy=s1354-k-no.jpeg",
+            "id": "1F6g4Lrsj_492n-nEs9q4c0G5Xu9iA9Wb",
+            "url": "https://drive.google.com/thumbnail?id=1F6g4Lrsj_492n-nEs9q4c0G5Xu9iA9Wb&sz=w1200"
+          },
+          {
+            "name": "APNQkAEMRKnpgyrp6sCllLdqbKSZicH6KWGnc_8J2EiV6iqT-z-zcwYpl2fOZSqeTmA6jS5vvEqVzEO4TBlKOQ8zg-IGs_cWtNb6cpZxw1NfLGy3tVEw0xWFWHhGVIiQNAStAunjSql2hQ=s1242-k-no.jpeg",
+            "id": "1hEJ6dpj48cIsEiuWg3_7RZsE_fj6tU58",
+            "url": "https://drive.google.com/thumbnail?id=1hEJ6dpj48cIsEiuWg3_7RZsE_fj6tU58&sz=w1200"
+          },
+          {
+            "name": "APNQkAEn02Ti5eyPEosghfamo37gzEbliECeCvIq12QYhiujLUUrrgDRaC7TfG9QRTiTUwvcGJ-lecF1RkIM0vgMKyCMo3ZumjUYJnhWvGwRP8OlGzuqE48aDxKnIXmiGFXqNDY98muUDg=s812-k-no.jpeg",
+            "id": "1B61pc7-tj77zC1lFI6qYHC6zZIFmLFIB",
+            "url": "https://drive.google.com/thumbnail?id=1B61pc7-tj77zC1lFI6qYHC6zZIFmLFIB&sz=w1200"
+          },
+          {
+            "name": "APNQkAEQ7A0gIrF21TfaCm86ARwtv96I-vH0EVROsHtmG_NzEE-cgDKagQp59ZiMEFnBLcrfSc4iDg_pzbooC1OOTHu0I1uUWtwS6XCW3HSBl9HooAx0qNu7WtZZa_wYLlObMEVTSAWb=s1031-k-no.jpeg",
+            "id": "1vO_tVFhZ41tDy9R18_kj_af3uWGjM060",
+            "url": "https://drive.google.com/thumbnail?id=1vO_tVFhZ41tDy9R18_kj_af3uWGjM060&sz=w1200"
+          },
+          {
+            "name": "APNQkAERlZU3GRG9xFRsobi2L_8hERPIG3nGvze5HWMgJSXnT8bTjNcv3i7Es2OGRUUlIC4tAPkLx5CGCvdVz6O_xpb8ne5clonDhA5Io0Sk9dB1IbuucyxEvTYsYvALyDjASEzBiyf3=s1016-k-no.jpeg",
+            "id": "1CEhhPYzXwLDDRyk3awaGgal0jIZWxOcy",
+            "url": "https://drive.google.com/thumbnail?id=1CEhhPYzXwLDDRyk3awaGgal0jIZWxOcy&sz=w1200"
+          },
+          {
+            "name": "APNQkAEru66mxb_PcF39CHLpJnL94qHDRjfUlQ-QvsTgAwWPcl5hRNMaZcmt62m8zlZGlhDVarUTOvC24wUOTcYwpG8O9dW4K4LSPOxDjgz88KvY1R6bLFfhn8LpMTO-4U5U5JJsJ7Y=s1354-k-no.jpeg",
+            "id": "1gbJSnCzRnlJAPWYsW3Uat6I_sJM7zqrw",
+            "url": "https://drive.google.com/thumbnail?id=1gbJSnCzRnlJAPWYsW3Uat6I_sJM7zqrw&sz=w1200"
+          },
+          {
+            "name": "APNQkAES6WzDArA_t-lWIjJENowAyjBbLfUHRTp20t-cbwn1KCEMkm8skaqFQfRAGMXEf_CRGihKIDjoGPLjbumlZ4nsTkyFi3PSmFI2CM57pcZzr2OnFrc1oONR90NAHop06vaN6cvnWQ=s770-k-no.jpeg",
+            "id": "1GCgSozNupX3hPVPjWgselLtwl7tGPqNd",
+            "url": "https://drive.google.com/thumbnail?id=1GCgSozNupX3hPVPjWgselLtwl7tGPqNd&sz=w1200"
+          },
+          {
+            "name": "APNQkAEsEUphovi9n_oqbuNb2UOp5YY4b7qbfjIBReYJiMOd16OwTfQE2k7DhrYaXV2KyfoO97RK2HvWUHGtK5j3GBztmLfGRgq2qQclcORqjcPg62UCji1rASBnN0pp741MS9jOieZEWvmACJ8=s1354-k-no.jpeg",
+            "id": "1kTiuQY86hBfyakZAY5fZzLA1jvGiQHGG",
+            "url": "https://drive.google.com/thumbnail?id=1kTiuQY86hBfyakZAY5fZzLA1jvGiQHGG&sz=w1200"
+          },
+          {
+            "name": "APNQkAEwC5VBdv6um94KACT-b0KObFSCU3uvgz6FhIZoLc8ebNGwu5gtiNdzsZ0eNtJTKsECCysTm3I2zbk7D-xmFFBsVLFhwXa-g8eirWROnMaNL-bQoEoUGxGzv9CYO2wSGaCmd1Ee=s1031-k-no.jpeg",
+            "id": "1wyU0VgYZUQXgbDiMrkIk0tEAvsPJ_ftq",
+            "url": "https://drive.google.com/thumbnail?id=1wyU0VgYZUQXgbDiMrkIk0tEAvsPJ_ftq&sz=w1200"
+          },
+          {
+            "name": "APNQkAEwQFuLkKKjoznSRLLHyu0n0nze--maeseIXZ5ewb35LC3dyAOPtkg5TZE9aZ6iqOYL_hTkRQeqSu94ICV0ZSh0zF2iLPRdKryGYBZOwZl1TG9NCqCP4XTSFdd7K5L87GYo-LVh7w=s1242-k-no.jpeg",
+            "id": "1nzhamsyI_6D7vyO1BRa8m53Z7CPSoVms",
+            "url": "https://drive.google.com/thumbnail?id=1nzhamsyI_6D7vyO1BRa8m53Z7CPSoVms&sz=w1200"
+          },
+          {
+            "name": "APNQkAF1aOL7SOUwPhAhrAeDY8KYZnk-Lb_C5grSk5XxrVoaERi44goNAoQrKbq5MY182vRw04bqgS4z98JddSNbVD8sDCQLa5PeW1pnuk6Pq8OD8psGgMD49aoQztDcuSXqRenKXnlmyX67ePEO=s773-k-no.jpeg",
+            "id": "17BwZvhsdotiCvPu47hE-NIwbMfsLmqeS",
+            "url": "https://drive.google.com/thumbnail?id=17BwZvhsdotiCvPu47hE-NIwbMfsLmqeS&sz=w1200"
+          },
+          {
+            "name": "APNQkAF_I7ZniYpkA72zuiqS4kT8L5n9M7Lpfy09yN2Beb6uCF9igXnUygq9yof6WsZ3S8n-EvZvleSn-vjRdYgdi3NjoChKl6lx6Txj5_91Qb8qXQg8r4qFDMVs-o9gQdZLFnptNnJIRw=s1031-k-no.jpeg",
+            "id": "1hIN1s5cjCBZw1U95O0JMco2BuBbwVJxg",
+            "url": "https://drive.google.com/thumbnail?id=1hIN1s5cjCBZw1U95O0JMco2BuBbwVJxg&sz=w1200"
+          },
+          {
+            "name": "APNQkAFA1jGvVhJRAgKvRiIFIucvzF5_lpQPItUA85j6ZvukYGl56vaP_Xwc9twCzIKFHYsNleuCzrUl0U7Uv3HvloApbZ8uzrXEN_7rTD8dW4X-wtg_mDnCXmn-d2XKgwe4NGfAJvoZWg=s1354-k-no.jpeg",
+            "id": "13tAhBxdYAgnobHSRpz_IZzu0wgDnmHeo",
+            "url": "https://drive.google.com/thumbnail?id=13tAhBxdYAgnobHSRpz_IZzu0wgDnmHeo&sz=w1200"
+          },
+          {
+            "name": "APNQkAFAUHyWDfnQXoSv5UwZTGsp0-jEeSQqvXOsrJmscuBR07lqwqYVV2JarfW0vxySk9ucMMg8C9RLxIsMsQNQDAoDH_3n668g1sZd0Mn8B8dCt7Qpe-iNIVRSJvMrUyIJAqNnknQxuw=s773-k-no.jpeg",
+            "id": "187ruYCkD4KxVRx4rVZMa2DA8n2hE9DYM",
+            "url": "https://drive.google.com/thumbnail?id=187ruYCkD4KxVRx4rVZMa2DA8n2hE9DYM&sz=w1200"
+          },
+          {
+            "name": "APNQkAFByEJrm-C0AgwkHME7Gh0-XHIE7--fh4Ogc-KbuCiLo-V7DOR5o1mZ9gk-Ixw8pLBc0qzcBNeO49tmW9-tl7ZCJr4-tSWrk4D92Ttgcm3T2n7zJ5LnkVz3tbTUqHVwADnYOfk=s1354-k-no.jpeg",
+            "id": "1i8Kxsyv6cB-fhcnwHkBt3BW6MuLqVJdi",
+            "url": "https://drive.google.com/thumbnail?id=1i8Kxsyv6cB-fhcnwHkBt3BW6MuLqVJdi&sz=w1200"
+          },
+          {
+            "name": "APNQkAFF8nKaJ_Zh1Xze5PpyASYh0HSw_2PaDt94oLicVZyrV0WQ2pzuWZftlwfRpcz6XW7qR7DKHWAxnyKXLD-TuraAg1KlcRIsobE-Hlr6fvOTLWOHLdTDynLsyg533f1KL-6lewY5=s1289-k-no.jpeg",
+            "id": "1i1FqbElX6deandjan_640zcclmq9IDaL",
+            "url": "https://drive.google.com/thumbnail?id=1i1FqbElX6deandjan_640zcclmq9IDaL&sz=w1200"
+          },
+          {
+            "name": "APNQkAFFo7LHxzl8wlCt-TqyjUEKaAjPmQn5WbR9IVKfq2IvZr0QSJ4oVgOFsR2VDk_VGvtZpESIpaX43Kx4-vAfRWB2BInWh3UBEiuoFD9geUdGbad5uG8Zrf_NiqL4XUBRW72cWJQzRDJz1W-n=s901-k-no.jpeg",
+            "id": "1VxRJRTU0H-81KQY_EoTqEhJjM-COGw1z",
+            "url": "https://drive.google.com/thumbnail?id=1VxRJRTU0H-81KQY_EoTqEhJjM-COGw1z&sz=w1200"
+          },
+          {
+            "name": "APNQkAFhqcOBStkCHTjcgX49JZWv6nbpbCOqAURJZh6-FcvYd_d4PkhMZ_ILoAgYH-APw9iehrgsM36krLkYrsa38i2KvZh6AebrRq-pg6geOkuwd_lw-bC1qFijQU7DtG_-EfPuZo1k=s1137-k-no.jpeg",
+            "id": "1FgPGwNs19XJHKRFOMUkZEL3V2UQipV3t",
+            "url": "https://drive.google.com/thumbnail?id=1FgPGwNs19XJHKRFOMUkZEL3V2UQipV3t&sz=w1200"
+          },
+          {
+            "name": "APNQkAFIXZFd8Ae8f4zyvbB3Me8Qh6WEWbdJw_MoSoUSFnAJhF1VIcneRW7lwVzuSMHXchFRbDioDgRCL2FyxSPDiRf1hgB7oYlotvviAVrTuC9Ios9YmVekVv_00tQjmFta0TyJWtLXXA=s1354-k-no.jpeg",
+            "id": "1t3DwnzYNHic-v9cqyuMiw8VNSVn0y92P",
+            "url": "https://drive.google.com/thumbnail?id=1t3DwnzYNHic-v9cqyuMiw8VNSVn0y92P&sz=w1200"
+          },
+          {
+            "name": "APNQkAFkiX7jbioyo1wI4wdNElYFnPYvduNSY3soKlFMwK6gm9DH3mgbFvnFefMzAneoKXj2htaEoc3aLsjHukJP7wQk9xAlN7Bs-jhqqvFOMogG_zwqy_kCspTen3PO-UaXhwXElfAB=s718-k-no.jpeg",
+            "id": "1vnSUAvRJyzyDW-jPRuKvELA1_t4SNXQB",
+            "url": "https://drive.google.com/thumbnail?id=1vnSUAvRJyzyDW-jPRuKvELA1_t4SNXQB&sz=w1200"
+          },
+          {
+            "name": "APNQkAFkKZxoyyRBDYpkZuUYKn3X6XQoojBsLuqgNXSMpbP4TEZKKYdMSEsHLbAzjJX6DbKGWzKc_9h5L-f1oiRKLPe1X7bG0MSm9Qqd7JPGUh8ivy1pBR1gxsWg0DG973QYb3Ye871FU_aGKKiu=s771-k-no.jpeg",
+            "id": "1Mvkfsx6fwHag0ceQRugQfk-GPZ05l8t8",
+            "url": "https://drive.google.com/thumbnail?id=1Mvkfsx6fwHag0ceQRugQfk-GPZ05l8t8&sz=w1200"
+          },
+          {
+            "name": "APNQkAFnaS2C9xZbMBzKkojJIfNHT-jJN0G4SH18an0X20DGUwqd2LL4-pwzBV40a0mc1FMXN5O9SbAzTvw2djGVG7ac9IWDiUGB_CVo-KORysJByWZe1PJDjCuAVgtAyDYS9gh8SL3t=s1031-k-no.jpeg",
+            "id": "1o2oVqULoFHwOcG6mN4ioPe3ghxDxQaM2",
+            "url": "https://drive.google.com/thumbnail?id=1o2oVqULoFHwOcG6mN4ioPe3ghxDxQaM2&sz=w1200"
+          },
+          {
+            "name": "APNQkAFo5pkMMU0lwNOwgdRqky7Rp6zkEDjXA7cm-5l2ETlVxSc0O6JsZVrttHycejWCqimPOqX9QgI0UWz_1wJW9RRHlklpWDzGHT6uBVzeLusA4S5Ii5Dp9ygAx8oc4K_XxXnMVdiO=s1031-k-no.jpeg",
+            "id": "1CGJyWABAzcJSPljhVJ8OMOY4lelRwNvM",
+            "url": "https://drive.google.com/thumbnail?id=1CGJyWABAzcJSPljhVJ8OMOY4lelRwNvM&sz=w1200"
+          },
+          {
+            "name": "APNQkAFPejcid1FzEDCZIPc4w3rXeh895CdZbHBRboCIVCvPoVVEAYE8-Z0Ldv7OrpnLnbk2NEa4nbVU1ZcqBF3eh2NyGM_2p-8Xpi7NBjCSw8RH3FxYjh6oWMxEwfaOM_SYJJjTihZxOArjKuch=s773-k-no.jpeg",
+            "id": "1YQAgCRMu9vlBAcrk9Se7yVjr-sfBiL-X",
+            "url": "https://drive.google.com/thumbnail?id=1YQAgCRMu9vlBAcrk9Se7yVjr-sfBiL-X&sz=w1200"
+          },
+          {
+            "name": "APNQkAFQMxxvbfyB3Wts3P3Vrf7viIwm_vamAfSTgrz2l9Tmu9bvD5ASmUTh4Rswh6T0Ldb2una4taLjAj_W8qs-k6T4CUl4dhGR5guSCa9Nrmb0Sj96-EOie17kgq21pC3Sv_HrS19m=s1016-k-no.jpeg",
+            "id": "1dZ13pe2nJ0ju0bOWBy8zasYlTI-qbuRm",
+            "url": "https://drive.google.com/thumbnail?id=1dZ13pe2nJ0ju0bOWBy8zasYlTI-qbuRm&sz=w1200"
+          },
+          {
+            "name": "APNQkAFQRbk92zMbw3tBJqVIiwaOBgX6RvVDIV8Qn6ZH3v3xUUFXwS_DIZ5cAyvtQ5HigHuATFwfVbY6WWL_2KTYR2ng6ULqcGgVCoU4a3VESG4n9ratShtdnotkQdOat2_0Gsep9IVovg=s1016-k-no.jpeg",
+            "id": "1HGNyJIU0X0Zgt6ubiiLe2QdqIcPSEAwm",
+            "url": "https://drive.google.com/thumbnail?id=1HGNyJIU0X0Zgt6ubiiLe2QdqIcPSEAwm&sz=w1200"
+          },
+          {
+            "name": "APNQkAFTG5bKr-HFFsiScmjo2Ac_F-oyw8c5iosT2zfXWbiM717gf1Yk_thXGqPgLC7YUol35bqUGaq6UTT1f00S5F3gnfN5nCev_Rit3OdL9rBmoqphYn058-rsE_oXc0Wz0A_nbyxEeu9UPmgJ=s773-k-no.jpeg",
+            "id": "1M5erUYDYZwwfcv2gYwpf599sGuf51-T3",
+            "url": "https://drive.google.com/thumbnail?id=1M5erUYDYZwwfcv2gYwpf599sGuf51-T3&sz=w1200"
+          },
+          {
+            "name": "APNQkAFu0MmNnPAZyNGDMCMOZTs0Vy5Kr5NRT62ieu20ssi4xfIS90e6Y0n756E5xkN6bXEHtlgkTLKix2gyHjSdJDxQHBX9pnhkuUEMnglvA9nmm1_jyr_qGHiwsHpK1h0mUKndZDFu=s812-k-no.jpeg",
+            "id": "1bsqP-VcAylCiWhJsiA3G15PJbQIDxvqn",
+            "url": "https://drive.google.com/thumbnail?id=1bsqP-VcAylCiWhJsiA3G15PJbQIDxvqn&sz=w1200"
+          },
+          {
+            "name": "APNQkAFUrdPaKl6I-BOOGSutl38qTR_zSk5SOnfbjZLXDOrsiwGVDnAHuWhWeWsl4yvtBOZOch9KDu3DIoq9MqqomwzUg7K2ZWYa_xBdYXBABf8MMEPNCMsQawn8ybUEA49z1_p8-icf=s1354-k-no.jpeg",
+            "id": "13vn_Uksa2Y4xnt_qsxkWPdsBezq1oGFu",
+            "url": "https://drive.google.com/thumbnail?id=13vn_Uksa2Y4xnt_qsxkWPdsBezq1oGFu&sz=w1200"
+          }
+        ],
+        "videos": [],
+        "thumbnail": {
+          "name": "APNQkAE-PzNC9Y0V_CBV8EI4YP04fzGrfMf1sNFG4ZOIftgnpFAwRnGtcd7gGMLGCioOo5pHYn2jQIxhS1zL3dVyaIDE64bfgd96_seRPrBUKIqkRcN8OxW_YN9fHNbNBZCobC7t9TU=s1016-k-no.jpeg",
+          "id": "1SODAEnDN0zls0ngPcVZJGTi5CK7tPrKH",
+          "url": "https://drive.google.com/thumbnail?id=1SODAEnDN0zls0ngPcVZJGTi5CK7tPrKH&sz=w1200"
+        }
+      },
+      {
+        "slug": "مشروع تشطيب جوس برس",
+        "name": "مشروع تشطيب جوس برس",
+        "nameEn": "",
+        "scope": "",
+        "location": "",
+        "representative": {},
+        "year": null,
+        "description": "",
+        "photos": [
+          {
+            "name": "AF1QipP9_I4gDaz54jW7GKu498PHREDer7jQvOa7BLYg=s773-k-no.jpeg",
+            "id": "1qLgLrAsukVqTyKBQTDZttmfLyB656icx",
+            "url": "https://drive.google.com/thumbnail?id=1qLgLrAsukVqTyKBQTDZttmfLyB656icx&sz=w1200"
+          },
+          {
+            "name": "AF1QipPvXbvaOSUucJc1xW81LTEvZC9rxeXg-7wT-47_=s901-k-no.jpeg",
+            "id": "1ZJokwVB8txhOtSgy2pjVWGvLlkQ6GzZa",
+            "url": "https://drive.google.com/thumbnail?id=1ZJokwVB8txhOtSgy2pjVWGvLlkQ6GzZa&sz=w1200"
+          },
+          {
+            "name": "APNQkAEh9ud_qiAzN8BEjKAA5LDalYeiZClVwY4IDo9wDT5d1pLfwMETXNHRV8093q9fTnEAubD1FA5XHx_108Sp3JOXYB825DPteRLE3Lg-yyPDGgBQJFrCjtWo6qHp--pTLT14MiiHuhZcX5h5=s1016-k-no.jpeg",
+            "id": "1R-foi7PCGh0gfYz2XFmVFEW2EthCAXsD",
+            "url": "https://drive.google.com/thumbnail?id=1R-foi7PCGh0gfYz2XFmVFEW2EthCAXsD&sz=w1200"
+          },
+          {
+            "name": "APNQkAEo6pPrdVr3dG3PSrPjUoiySQ4ykMRx_6QOmB3hCk7AOQ6I4US0fr0d9WKgPBjF4y5TQOIhv_Xkefi71kNjigS_PUxQz4-y0SwMI7KugowCH-U-raEZU7U4dIcxi1vXhwn4fRyR=s1016-k-no.jpeg",
+            "id": "1OqXJUuLdWBae2mcuW3YunF6c7blSeyFX",
+            "url": "https://drive.google.com/thumbnail?id=1OqXJUuLdWBae2mcuW3YunF6c7blSeyFX&sz=w1200"
+          },
+          {
+            "name": "APNQkAF7UB03NTnkHHRekYl8-BsGKfYgKUpc34Nmbt6D9HI67E73rNipBqTyAMKKt3NZK4NDcN3Tc0OIS0xaFp0NjDCOrSImGlkWXVkFAwmN6Szb_EAWnkk6dgrTXEA5BCfqTsyds_q0=s987-k-no.jpeg",
+            "id": "1gHhL67M-h1Fgxr2mzJVqtSHJnI5Fb5Jp",
+            "url": "https://drive.google.com/thumbnail?id=1gHhL67M-h1Fgxr2mzJVqtSHJnI5Fb5Jp&sz=w1200"
+          },
+          {
+            "name": "APNQkAFfTROdaBFh2xAImtTV94TexFeqIhOXiDNRq_pc6HO9CXr7GALyb5s5jjUKbcLYZnlyR8XY3jOZP35PKocUJ9OHji1YmhbkqocA7Lddo86rUKyzhSGVmX_C-R4NXswr_xFHsslyNA=s1016-k-no.jpeg",
+            "id": "1s20PFgA3-QiBQ-xJ0GwqnkfrjtBWP403",
+            "url": "https://drive.google.com/thumbnail?id=1s20PFgA3-QiBQ-xJ0GwqnkfrjtBWP403&sz=w1200"
+          },
+          {
+            "name": "APNQkAFILmO3I-Arm6OfmPyVFSfsZQfjxreabyypzka1hAr0HPjw9zlfustj9aBPfWPq_UJM_KUhr1eW-yFJ91uS5ZCTXc4KHPQUqhWmFIWhswk1kiThsS9E82K6TRJ5Oew6hopG9Q7VN11Aajql=s1354-k-no.jpeg",
+            "id": "1xnF8UREA4jt45Co19odv2WM1m4CWcGj7",
+            "url": "https://drive.google.com/thumbnail?id=1xnF8UREA4jt45Co19odv2WM1m4CWcGj7&sz=w1200"
+          },
+          {
+            "name": "APNQkAFRrF12TVuH89SGemi_8jLFpxpXlK7CVQqbgl1NwNM_78txkg6FX9CwOU0npGYHUSFnZHekHjKEx9HJM3f5XgNG1FTe2KSy9I4q4CtoQ7jbD6nEtAdVBgs-oY612B3Nr_9hznY2=s1016-k-no.jpeg",
+            "id": "1vJ7CPF0bmRZ82xLPykuyg87iwnrGyKdy",
+            "url": "https://drive.google.com/thumbnail?id=1vJ7CPF0bmRZ82xLPykuyg87iwnrGyKdy&sz=w1200"
+          },
+          {
+            "name": "APNQkAG-SdY7GVfRPMZlYF-Ci4TYMKXV6mIJu_yxHrgToNHpw7ZiLrBwQG9YeSKJ_9kWTNeRcOHIiI5KGmHcaAJjAZql2CXOEpx2mKNHXRQjyPk2TUO6TqTtv3bhFdMTt4mb2MhXZBpovddhiYU=s1354-k-no.jpeg",
+            "id": "1rM85xwqQPDq9uFBdUwIESQYzHj8A13S9",
+            "url": "https://drive.google.com/thumbnail?id=1rM85xwqQPDq9uFBdUwIESQYzHj8A13S9&sz=w1200"
+          },
+          {
+            "name": "APNQkAGT-K80evBGNN29zpGWU_q--WoQkK3XCu5v2b72pTd8CHZnz5xsbg83j9kJsZmuIZWCUKJzwPfHlEVsF9dl-mVSNTPu_7bqDuVc4gwJpcKSBWrX9PD5RbvsiWS32BxZmBiAfBSY=s773-k-no.jpeg",
+            "id": "1PxD32sVMp42cDl1UzE_kCef8hKkJlpf4",
+            "url": "https://drive.google.com/thumbnail?id=1PxD32sVMp42cDl1UzE_kCef8hKkJlpf4&sz=w1200"
+          },
+          {
+            "name": "APNQkAH4NHMYoOKcrEYnJVZPQcYVMp-obgPJcibYGpA2fiYrLc-AxvrBVbNU-AQiW8QByXXdP6fc0_3KPXPs3Q0cahEPq5ii_foITKiQtyshd-_wQAZsgQ3FryvX4JjMbN5apbjXiRyIjoJgtxb9=s1354-k-no.jpeg",
+            "id": "1WKx_8mVwU6hN7u5bYjJy5BmQ6C62W1I6",
+            "url": "https://drive.google.com/thumbnail?id=1WKx_8mVwU6hN7u5bYjJy5BmQ6C62W1I6&sz=w1200"
+          },
+          {
+            "name": "APNQkAHPlKHa4KpO374ANNcwtgEbcZL7NodsOqDSTacF9Iq907HnCisplEFhAcmYUuzUD1rBvxWwqdppJYryPRu84b67gbUkBYApQTxSAD_veWXErobCJ5ON5Pbl_fxHRIHfCrkqzTmR02H6m3o=s1016-k-no.jpeg",
+            "id": "1xbOsJWIJoMw-n-wlPweIvpJ2khkN07AV",
+            "url": "https://drive.google.com/thumbnail?id=1xbOsJWIJoMw-n-wlPweIvpJ2khkN07AV&sz=w1200"
+          },
+          {
+            "name": "APNQkAHQpUGmpJYqcyLqLMQpgDIO01fD5jk_RKf07m8i4HMxwn6hT97gn2YH9bvJS0c1zH0qWu8hbyfo83QeVyloQxEZnGAOdQH_2fhj87uDFoonQqq-vP87IuRE1ZVPrnIF-3Utw4jdOLwXICDZ=s1354-k-no.jpeg",
+            "id": "1xqOVoZ4JlBh_WNAHvfeZ4MMgQ4S2oiSj",
+            "url": "https://drive.google.com/thumbnail?id=1xqOVoZ4JlBh_WNAHvfeZ4MMgQ4S2oiSj&sz=w1200"
+          },
+          {
+            "name": "WhatsApp Image 2026-02-01 at 9.19.53 PM (1).jpeg",
+            "id": "1LNZ2-DshLelQUCh3UUbKO-qPYkgf2Ze2",
+            "url": "https://drive.google.com/thumbnail?id=1LNZ2-DshLelQUCh3UUbKO-qPYkgf2Ze2&sz=w1200"
+          },
+          {
+            "name": "WhatsApp Image 2026-02-01 at 9.19.53 PM (2).jpeg",
+            "id": "1v1Yl4e7HnB2_SRq9t0B6rUD84YcCE0X4",
+            "url": "https://drive.google.com/thumbnail?id=1v1Yl4e7HnB2_SRq9t0B6rUD84YcCE0X4&sz=w1200"
+          },
+          {
+            "name": "WhatsApp Image 2026-02-01 at 9.19.53 PM (3).jpeg",
+            "id": "17GoTHgdEP2dmivoMhoyieaiGZRprVuFI",
+            "url": "https://drive.google.com/thumbnail?id=17GoTHgdEP2dmivoMhoyieaiGZRprVuFI&sz=w1200"
+          }
+        ],
+        "videos": [
+          {
+            "name": "videoplayback (1).mp4",
+            "id": "1qmsZlX4IqJed0Vd5rb9ICv1sfUlvqeZY",
+            "url": "https://drive.google.com/file/d/1qmsZlX4IqJed0Vd5rb9ICv1sfUlvqeZY/preview",
+            "embed": true
+          },
+          {
+            "name": "videoplayback (2).mp4",
+            "id": "1dq9EkBdlulFBolbBeUIfumd___Xb85OO",
+            "url": "https://drive.google.com/file/d/1dq9EkBdlulFBolbBeUIfumd___Xb85OO/preview",
+            "embed": true
+          },
+          {
+            "name": "videoplayback.mp4",
+            "id": "1OQRM-fgPPo9NPsZwGfklgBALYf5_ToEQ",
+            "url": "https://drive.google.com/file/d/1OQRM-fgPPo9NPsZwGfklgBALYf5_ToEQ/preview",
+            "embed": true
+          }
+        ],
+        "thumbnail": {
+          "name": "AF1QipP9_I4gDaz54jW7GKu498PHREDer7jQvOa7BLYg=s773-k-no.jpeg",
+          "id": "1qLgLrAsukVqTyKBQTDZttmfLyB656icx",
+          "url": "https://drive.google.com/thumbnail?id=1qLgLrAsukVqTyKBQTDZttmfLyB656icx&sz=w1200"
+        }
+      },
+      {
+        "slug": "مشروع تشطيب صالات سكلبتو",
+        "name": "مشروع تشطيب صالات سكلبتو",
+        "nameEn": "",
+        "scope": "",
+        "location": "",
+        "representative": {},
+        "year": null,
+        "description": "",
+        "photos": [
+          {
+            "name": "AF1QipM8uMRLQp-HqcQYv8arNkvs0ndjrA3WDFTNwTN_=s812-k-no.jpeg",
+            "id": "1yDpGxqk1VQwxFDGuDbIBFzvjgjQ6yJh9",
+            "url": "https://drive.google.com/thumbnail?id=1yDpGxqk1VQwxFDGuDbIBFzvjgjQ6yJh9&sz=w1200"
+          },
+          {
+            "name": "AF1QipM9TpNcGR4NiQV08Ev6dnkU-0Zz_SxuMVcF9GUK=s812-k-no.jpeg",
+            "id": "1eKmAN6TJr0EEGBoEVoanNBculBEgAem9",
+            "url": "https://drive.google.com/thumbnail?id=1eKmAN6TJr0EEGBoEVoanNBculBEgAem9&sz=w1200"
+          },
+          {
+            "name": "AF1QipMFDDK8EKdGvge0wRlnYZOPcAYZa4O-b11oSnfc=s1354-k-no.jpeg",
+            "id": "1fK9_gMAUrbcMNLyQvVPo5Ui71uwCm_rU",
+            "url": "https://drive.google.com/thumbnail?id=1fK9_gMAUrbcMNLyQvVPo5Ui71uwCm_rU&sz=w1200"
+          },
+          {
+            "name": "AF1QipMlIWD66OXn3Rh5tqREpyFobAZIOpf3YV_X88Me=s1354-k-no.jpeg",
+            "id": "1xkv8epTnwTQJBgXc2Io4fws_MbjmQ2Pt",
+            "url": "https://drive.google.com/thumbnail?id=1xkv8epTnwTQJBgXc2Io4fws_MbjmQ2Pt&sz=w1200"
+          },
+          {
+            "name": "AF1QipN43e2dHDO_oZIBEFW7oDbiu6PoEaJX8SMhdNti=s676-k-no.png",
+            "id": "1ZhwsdSJSGN7xYY40ySr994mT4os_cjIh",
+            "url": "https://drive.google.com/thumbnail?id=1ZhwsdSJSGN7xYY40ySr994mT4os_cjIh&sz=w1200"
+          },
+          {
+            "name": "AF1QipNoprP4gi4g8odVTQniV8IpTRIsQj8-q18MW21t=s1349-k-no.jpeg",
+            "id": "1MN1Zn_CjeaTqilMkY44-SRdtZ4J7pFZI",
+            "url": "https://drive.google.com/thumbnail?id=1MN1Zn_CjeaTqilMkY44-SRdtZ4J7pFZI&sz=w1200"
+          },
+          {
+            "name": "AF1QipNVLSdKL5x2u5R_4xNSgajzSoWjynkbBTgeDSv4=s1016-k-no.jpeg",
+            "id": "18KwfxuVRVNJZ7NA1BoC4xstSIwJE9dIa",
+            "url": "https://drive.google.com/thumbnail?id=18KwfxuVRVNJZ7NA1BoC4xstSIwJE9dIa&sz=w1200"
+          },
+          {
+            "name": "AF1QipOGNk4UKoQTNDcYUvSpX2X2i5JqHxOx6pIbxw2H=s1016-k-no.jpeg",
+            "id": "1mOaQ0xU8nry-ytGkOSXjCAYUV-VzmfAX",
+            "url": "https://drive.google.com/thumbnail?id=1mOaQ0xU8nry-ytGkOSXjCAYUV-VzmfAX&sz=w1200"
+          },
+          {
+            "name": "AF1QipOwUJPUyrkVMRlfWoLP-sHigWjYmxgCBX46V8YD=s1350-k-no.jpeg",
+            "id": "1wS7IlC2-XWyhwaiWOiCWelGVl9Yfpy1c",
+            "url": "https://drive.google.com/thumbnail?id=1wS7IlC2-XWyhwaiWOiCWelGVl9Yfpy1c&sz=w1200"
+          },
+          {
+            "name": "AF1QipPcs3NhE7egZ42gJJLNR3JAsnHgMF7ukCgTlX1A=s1016-k-no.jpeg",
+            "id": "1w_qyj2bDUBVbcD7XeHv36a-86wEzvNFo",
+            "url": "https://drive.google.com/thumbnail?id=1w_qyj2bDUBVbcD7XeHv36a-86wEzvNFo&sz=w1200"
+          },
+          {
+            "name": "APNQkAEH3AmPkfo-6BumG09QJF7fuUk1WnVC5WhEOSpqRNo1Sn_zlfYKmJphI_OxEh9auaAPtgMLqd-gGm5CEN0h5HK7uJV40E_T2qfrbARao1lskQiqFT-fen2WiEeN0KSLKmDQd0yL7Q=w203-h360-k-no.jpeg",
+            "id": "1bdeVMX8EK8xSuGJ8Jc-J_Xaz9bbQa8_e",
+            "url": "https://drive.google.com/thumbnail?id=1bdeVMX8EK8xSuGJ8Jc-J_Xaz9bbQa8_e&sz=w1200"
+          },
+          {
+            "name": "APNQkAEjRxHAAcT3l2m_s9V2S7vXU9q4KruUP3Uuz9jj2oClCCJnoylkLv0AEgf5I3HbQgYwMsVzixyJbQ1Hj13ruP_Uj5jgs3L_2sGOS-Iq8foRg4Utxgr99XupJcG6aJNP0eo4VjKF=s1354-k-no.jpeg",
+            "id": "1d8gqcttwieHlBldgspCQbIzaG-p9FtmF",
+            "url": "https://drive.google.com/thumbnail?id=1d8gqcttwieHlBldgspCQbIzaG-p9FtmF&sz=w1200"
+          },
+          {
+            "name": "APNQkAF12o7z6aR9lZEkV1Ra5K0KN-wRSsDRU_JkXbyCatJnC0sL06cwDf9t1RtttKmpvrHAWQWa16fAwWFg6wXhP0KvB7aPIMjAWWUuU5AIbPogfI7GjHm4LdANXo_TeGZGJriE-YPjKw=s1354-k-no.jpeg",
+            "id": "1Ki6oFq4byjO8jmz8OjjxVaSBFq_6FWD6",
+            "url": "https://drive.google.com/thumbnail?id=1Ki6oFq4byjO8jmz8OjjxVaSBFq_6FWD6&sz=w1200"
+          },
+          {
+            "name": "APNQkAF6SA9tGtvAz2o9vWr0K8Rt5SAI83gOVb1XT2Uc9YYybzHOVAwNu39KsF3ZrGRDhE6WzxuqGWLiXhAIiBT768zdFFf8IjLEh2-NQ9qKNDFaGY8NNKerVMf6z0rzHoQ83CAkKsYD=s1016-k-no.jpeg",
+            "id": "1x7w48FsKUHgtzm6Wjz-0Fru2fLkFpgm1",
+            "url": "https://drive.google.com/thumbnail?id=1x7w48FsKUHgtzm6Wjz-0Fru2fLkFpgm1&sz=w1200"
+          },
+          {
+            "name": "APNQkAFaCsWqNvP-4YWTWsaSsPna1x3zUnG3LvtE7-IqNC69aSc_HQrhFWg9M3vM8XRW76rrrJc3Fp9hKNi5AvKdpaH6jLzaaMqar1BEH57tQoBYmg0WieCOnM78whgSeGKOXKMxaY6haQ=s1016-k-no.jpeg",
+            "id": "1B3Ll9czEinjt6TBeQTaRBn4R7wodxJP-",
+            "url": "https://drive.google.com/thumbnail?id=1B3Ll9czEinjt6TBeQTaRBn4R7wodxJP-&sz=w1200"
+          },
+          {
+            "name": "APNQkAFHZz53BjdPdjfIetaYv2YPovPP6FHqY1ScY3gN9EPgupF2p2yRKLFMngxl9N_66KbZzCa0ztSjvEJmDQmNLAYMCILIMNGjJ86WOGX-GEDAX1e4uc0zI0ZonJI3kiO5EqBqtXgR=s1354-k-no.jpeg",
+            "id": "1scyfdHTh4SdLVr9ShiCG3uS1M6CmuGZ1",
+            "url": "https://drive.google.com/thumbnail?id=1scyfdHTh4SdLVr9ShiCG3uS1M6CmuGZ1&sz=w1200"
+          },
+          {
+            "name": "APNQkAFJC_se_vEaclwVviPRJaStm1NulM5NTsotB7OPlsmfDnQREOCsuW1DIx2D0pq0-Fgh--SZyWIOU-RV9kOXSZfSDYqKyt_AOJJ49UFzv97t5BpUb3b6m-pXbQvt-pyWNQ8ZVUQA=s1354-k-no.jpeg",
+            "id": "1F0RyGDm1ooKmTBIpKLbCYM_CTcyOTBG2",
+            "url": "https://drive.google.com/thumbnail?id=1F0RyGDm1ooKmTBIpKLbCYM_CTcyOTBG2&sz=w1200"
+          },
+          {
+            "name": "APNQkAFszN7_Y-XNeWWq8Nl0iMWd5B5FTIgUDDxMqrys2AhKP5ol9jeVTyfXhG8s7sWYoWl-pZX1H-kSzABx36AC_Zlh5SSghrCHITgb_JyQgUohlie10DXYR_tW_okLyMe6sIBChLu5ZPEbNcGt=s1016-k-no.jpeg",
+            "id": "1G8y5iHf8YfXegSnt9H5InTZ-GhCKsgRs",
+            "url": "https://drive.google.com/thumbnail?id=1G8y5iHf8YfXegSnt9H5InTZ-GhCKsgRs&sz=w1200"
+          },
+          {
+            "name": "APNQkAGCc_VNqvxu9vVXEAkx4UWx0zkiAjg6lIUd31G_Tir8bRW4T4ktKj1WO2FlgFtuUbIOxPAFrXi7f65o-QEdinHdGcZTyblrcXGWMpCkIQeHuieKyHs4uRCbu-EkyA9faHUeuZCL=s1354-k-no.jpeg",
+            "id": "175-74qyHbq_HwKRY2FVNVnZ7jvm7qAtf",
+            "url": "https://drive.google.com/thumbnail?id=175-74qyHbq_HwKRY2FVNVnZ7jvm7qAtf&sz=w1200"
+          },
+          {
+            "name": "APNQkAGuj1h6yCcAYhvzGH_aIKK3oXwLE3_oX8sjyBjXsDNb1T6aVbDGcukaOrB8OcqBDxb-Fv1X6OQ4YrzeMP8ctLR9hLsn8QmZl6uMKfhGAdN_zKyH2FIf4upBE0jQnliFgl7_Jy-O=s1354-k-no.jpeg",
+            "id": "1Q7HQa9thulY4BjA6IcdRUCm24NYUMAh_",
+            "url": "https://drive.google.com/thumbnail?id=1Q7HQa9thulY4BjA6IcdRUCm24NYUMAh_&sz=w1200"
+          },
+          {
+            "name": "APNQkAGX4TIeA75EK0s5FBBnq7FklHTlXxbPokrivYCI4F2TRXJx7pHsLRJe7ZswDtI4-WKu49yrF8T0o80ylQCxxeQpodUoyYCwdSOk2DAFrtRrHdbe8fuI2ujEhztiPmnXkNbLYHY=s1354-k-no.jpeg",
+            "id": "1XMUU3g__zNUIc5razZjpRnI0RixlY0eh",
+            "url": "https://drive.google.com/thumbnail?id=1XMUU3g__zNUIc5razZjpRnI0RixlY0eh&sz=w1200"
+          },
+          {
+            "name": "APNQkAGZbJqpVI5KnIdFyZlLxkpbYfT8vdg8c96EoXrK4K1DjdsmWakD4BjvolyIo4oLQlw3p9zBxQOA4f7hIhbfyR-lnEWatbsNqd8xw8Cw_tnqFGzAGH3ryYuTcKuYzEZT_uJrGCUm=w203-h360-k-no.jpeg",
+            "id": "1cWX4kHVvmHb8Zfv-Hpooei0WrNWWT1Oe",
+            "url": "https://drive.google.com/thumbnail?id=1cWX4kHVvmHb8Zfv-Hpooei0WrNWWT1Oe&sz=w1200"
+          },
+          {
+            "name": "APNQkAH-QBj5EWg7bvkLBZsa1uT0UVi7mIsfJeFCV3eQqUKizom8ocfhy4TjC-mBJUDnzJKJeOTmbvgrk20XBNVxYIyZstq3S5pd6RavxgOdpvZ0wZtxsHtB6kFqUn2miRYvGlNV7OgLOQ=w64-h64-p-k-no.jpeg",
+            "id": "1UdzMCEJIGsEpD3TjtWovTf41b-x2pqIc",
+            "url": "https://drive.google.com/thumbnail?id=1UdzMCEJIGsEpD3TjtWovTf41b-x2pqIc&sz=w1200"
+          },
+          {
+            "name": "APNQkAHceaP6KCtczC8wi8popR0k1v1LIgeKN2pSaNSl9qSj4wYaP7zIbqkFXrmrATPpl64ayYtbuP76_n4mvUUJAwkdPjSkp_Qgf5b3Zm10d2soI6kcrDOO9GZiFLOOgzeU1tM1eCk=s812-k-no.jpeg",
+            "id": "1GqeF60UMJmIpbvO6t4032hQEcAYzzY5N",
+            "url": "https://drive.google.com/thumbnail?id=1GqeF60UMJmIpbvO6t4032hQEcAYzzY5N&sz=w1200"
+          },
+          {
+            "name": "APNQkAHepoHPookAxDBTQjI7jYzzJOki4YE6DDSCepOR5_crRyUKF_48C0elWvspegES0ncme2NNoZrBortmpgc3f41xQcX6LBwKWSw7xPfe_ag1h62CjzroPCTt-GZzGl0fLr3tbMw=s1354-k-no.jpeg",
+            "id": "1V1auYjmcnzVbZ4WXXBJUqJYKPLlv2hbp",
+            "url": "https://drive.google.com/thumbnail?id=1V1auYjmcnzVbZ4WXXBJUqJYKPLlv2hbp&sz=w1200"
+          },
+          {
+            "name": "APNQkAHG0qeOPlmjYHp0IDIpy4X27AdJmX_73Dpl-3jv7hXIp2bQQBbBIOC39phxMeRV2Fkhw3rwVc0Go6Lw-9u2XPb5kYSxWviYnkFmqOXfakLhphMNget0RjKkKTsy0AvA1Ht7rm2ppQ=s1016-k-no.jpeg",
+            "id": "1NTNExABdMcRNA3oie2yDGiFfXR_UHig9",
+            "url": "https://drive.google.com/thumbnail?id=1NTNExABdMcRNA3oie2yDGiFfXR_UHig9&sz=w1200"
+          },
+          {
+            "name": "WhatsApp Image 2026-02-01 at 8.48.26 PM (1).jpeg",
+            "id": "137N15D_sNj2Ov8SdQ0yIfU3s_gNhw44c",
+            "url": "https://drive.google.com/thumbnail?id=137N15D_sNj2Ov8SdQ0yIfU3s_gNhw44c&sz=w1200"
+          },
+          {
+            "name": "WhatsApp Image 2026-02-01 at 8.48.26 PM (2).jpeg",
+            "id": "1qjOzUfumjcVYHr_04_oATtsUVfDYUw11",
+            "url": "https://drive.google.com/thumbnail?id=1qjOzUfumjcVYHr_04_oATtsUVfDYUw11&sz=w1200"
+          },
+          {
+            "name": "WhatsApp Image 2026-02-01 at 8.48.26 PM (3).jpeg",
+            "id": "1Kj7ne81f5m5GMuS-sfWD00-K3hdbWtTE",
+            "url": "https://drive.google.com/thumbnail?id=1Kj7ne81f5m5GMuS-sfWD00-K3hdbWtTE&sz=w1200"
+          },
+          {
+            "name": "WhatsApp Image 2026-02-01 at 8.48.26 PM (4).jpeg",
+            "id": "1e-1gPufeg5HBmgM4NoFvopjWAHlSU8yx",
+            "url": "https://drive.google.com/thumbnail?id=1e-1gPufeg5HBmgM4NoFvopjWAHlSU8yx&sz=w1200"
+          }
+        ],
+        "videos": [
+          {
+            "name": "videoplayback (1).mp4",
+            "id": "1eQWuP9VLQ_fqUg7FzdgDf_7bjAtgW7Z4",
+            "url": "https://drive.google.com/file/d/1eQWuP9VLQ_fqUg7FzdgDf_7bjAtgW7Z4/preview",
+            "embed": true
+          },
+          {
+            "name": "videoplayback.mp4",
+            "id": "1RC8MHVny0E2781DFTYhU4ELeZ8i93eiQ",
+            "url": "https://drive.google.com/file/d/1RC8MHVny0E2781DFTYhU4ELeZ8i93eiQ/preview",
+            "embed": true
+          }
+        ],
+        "thumbnail": {
+          "name": "AF1QipM8uMRLQp-HqcQYv8arNkvs0ndjrA3WDFTNwTN_=s812-k-no.jpeg",
+          "id": "1yDpGxqk1VQwxFDGuDbIBFzvjgjQ6yJh9",
+          "url": "https://drive.google.com/thumbnail?id=1yDpGxqk1VQwxFDGuDbIBFzvjgjQ6yJh9&sz=w1200"
+        }
+      },
+      {
+        "slug": "مشروع تشطيب صالون فاب اند فانسي",
+        "name": "مشروع تشطيب صالون فاب اند فانسي",
+        "nameEn": "",
+        "scope": "",
+        "location": "",
+        "representative": {},
+        "year": null,
+        "description": "",
+        "photos": [
+          {
+            "name": "AF1QipMPVFrs8CNLw2k83VxIekmAN6tY1icYAIHFj--7=s1354-k-no.jpeg",
+            "id": "1-w7PTThgIw_kwI6sYJHeUXcO6-3m45zM",
+            "url": "https://drive.google.com/thumbnail?id=1-w7PTThgIw_kwI6sYJHeUXcO6-3m45zM&sz=w1200"
+          },
+          {
+            "name": "AF1QipN6XlBBBtyzahfYuB-5crkkO55M0XLnlzghkD6b=s1016-k-no.jpeg",
+            "id": "1ZwRU6W2WYfNk0aZ1OnCOFQyIYlAzMNWB",
+            "url": "https://drive.google.com/thumbnail?id=1ZwRU6W2WYfNk0aZ1OnCOFQyIYlAzMNWB&sz=w1200"
+          },
+          {
+            "name": "AF1QipN9oI8EKjzd_eA9z3PIIjk6muKw_-m0spmXWDnk=s870-k-no.jpeg",
+            "id": "1RA7f0vpjrdJBEhudji8JeVAMcaEYQ9F7",
+            "url": "https://drive.google.com/thumbnail?id=1RA7f0vpjrdJBEhudji8JeVAMcaEYQ9F7&sz=w1200"
+          },
+          {
+            "name": "AF1QipOMJEHdFy3UtkFmqADcbo9w91lOSU46d-MMZp8S=s1354-k-no.jpeg",
+            "id": "1WXoMbbcQfQrF8huhRLMSwdH0rPfGcqSI",
+            "url": "https://drive.google.com/thumbnail?id=1WXoMbbcQfQrF8huhRLMSwdH0rPfGcqSI&sz=w1200"
+          },
+          {
+            "name": "AF1QipPn7gsXUPw90_JP4pgDpbXNfSOmnJQnLDRT5HW9=s870-k-no.jpeg",
+            "id": "19_nmXCEhj7Xx4I9NMm5RZzU3qdEKv8rd",
+            "url": "https://drive.google.com/thumbnail?id=19_nmXCEhj7Xx4I9NMm5RZzU3qdEKv8rd&sz=w1200"
+          },
+          {
+            "name": "AF1QipPSlyCLt3dsNJev38d3mJuqCwTxggSyN4-Dqg5q=s1354-k-no.jpeg",
+            "id": "1DArdmf3F0ucexTucb9RQXOpeq6HeBcX6",
+            "url": "https://drive.google.com/thumbnail?id=1DArdmf3F0ucexTucb9RQXOpeq6HeBcX6&sz=w1200"
+          },
+          {
+            "name": "APNQkAEUuSn3KbCQuj4aq3VZjngEb1fo8PF1PnCqoG54ukx4heET7hutWqaH3nMzXvYyVGRwwRZCKjfsX2-tH1IjzeqvrNaFbYIbu2It2ScyY-O9woDjqzBylS0zpp1ZZuEWtwvO3gltoPBm0mCl=s1016-k-no.jpeg",
+            "id": "1fSL7UByLf1QgjHdldK7jHQAkiLD2-bEu",
+            "url": "https://drive.google.com/thumbnail?id=1fSL7UByLf1QgjHdldK7jHQAkiLD2-bEu&sz=w1200"
+          },
+          {
+            "name": "APNQkAF1PLlQKOV5-I9QPtl9tanlkcWxFPDIInZjFoalBBWtzQACtCxaKzqsiyKolLJFbeBM91xWvwmRih4j8c3H3BgH_iqOck02FQWLhZrBDtlxvYUi1JTkPwo36SUkxbTl8iPum-a4ErzaKls=s1354-k-no.jpeg",
+            "id": "144yBNXCpBDZTwHFB3vMNvtfFDiVShpBY",
+            "url": "https://drive.google.com/thumbnail?id=144yBNXCpBDZTwHFB3vMNvtfFDiVShpBY&sz=w1200"
+          },
+          {
+            "name": "APNQkAGHgivZmuDWfCNGiH3jHbClLbMv1BGhuAaAq_WXoS2NwAQ7QqKWwTt1sGhxiQmN9hxOtpw9FwrrgaUazBfd_k9Wzqp_YN2v6pJWJQIrdgHPZTJzvCHhSgm1yu8TKpqWYH2xnk-zr1urcIxW=s1354-k-no.jpeg",
+            "id": "1GH18Kl-BMTIlAcGj3mY-hOpPdU6u2-q3",
+            "url": "https://drive.google.com/thumbnail?id=1GH18Kl-BMTIlAcGj3mY-hOpPdU6u2-q3&sz=w1200"
+          },
+          {
+            "name": "Gemini_Generated_Image_kqeoexkqeoexkqeo.png",
+            "id": "1J0Vk-Y8zRDTxT6ID7bVreiOIny64OZ1T",
+            "url": "https://drive.google.com/thumbnail?id=1J0Vk-Y8zRDTxT6ID7bVreiOIny64OZ1T&sz=w1200"
+          },
+          {
+            "name": "WhatsApp Image 2026-02-01 at 8.48.25 PM (5).jpeg",
+            "id": "1BDGhe_toO5246GOE_GwSHEbpvaybQaWE",
+            "url": "https://drive.google.com/thumbnail?id=1BDGhe_toO5246GOE_GwSHEbpvaybQaWE&sz=w1200"
+          },
+          {
+            "name": "WhatsApp Image 2026-02-01 at 8.48.25 PM (6).jpeg",
+            "id": "1pvyLWX-jjbJ_kQh7lWKLkW6nmsIgugpB",
+            "url": "https://drive.google.com/thumbnail?id=1pvyLWX-jjbJ_kQh7lWKLkW6nmsIgugpB&sz=w1200"
+          }
+        ],
+        "videos": [],
+        "thumbnail": {
+          "name": "AF1QipMPVFrs8CNLw2k83VxIekmAN6tY1icYAIHFj--7=s1354-k-no.jpeg",
+          "id": "1-w7PTThgIw_kwI6sYJHeUXcO6-3m45zM",
+          "url": "https://drive.google.com/thumbnail?id=1-w7PTThgIw_kwI6sYJHeUXcO6-3m45zM&sz=w1200"
+        }
+      }
+    ]
+  },
+  "driveFolderId": "1mwN5fOhas66MznQOWGG1hlyoOVmkADyV",
+  "generated": true
+}
