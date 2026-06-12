@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
-  <meta name="theme-color" content="#1a1a1a">
+  <meta name="theme-color" content="#4e5342">
   <title>المشروع | Bevel</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -12,9 +12,13 @@
 </head>
 <body>
   <header class="site-header">
-    <div id="site-logo"></div>
-    <a href="#" class="back-link" id="back-link">← المشاريع</a>
-    <h1 class="page-title" id="page-title">المشروع</h1>
+    <div class="header-row">
+      <div id="site-logo"></div>
+      <div class="header-main">
+        <a href="#" class="back-link" id="back-link">← المشاريع</a>
+        <h1 class="page-title" id="page-title">المشروع</h1>
+      </div>
+    </div>
   </header>
 
   <main id="app">
@@ -29,15 +33,20 @@
       </section>
 
       <section class="media-section">
-        <h2>الصور</h2>
-        <div class="photo-grid" id="photo-grid"></div>
-        <p class="no-media" id="no-photos" hidden>لا توجد صور</p>
-      </section>
+        <div class="media-toggle" id="media-toggle">
+          <button type="button" class="media-toggle-btn active" id="toggle-photos">الصور</button>
+          <button type="button" class="media-toggle-btn" id="toggle-videos">الفيديو</button>
+        </div>
 
-      <section class="media-section">
-        <h2>الفيديو</h2>
-        <div class="video-list" id="video-list"></div>
-        <p class="no-media" id="no-videos" hidden>لا توجد فيديوهات</p>
+        <div class="media-panel" id="media-photos">
+          <div class="photo-grid" id="photo-grid"></div>
+          <p class="no-media" id="no-photos" hidden>لا توجد صور</p>
+        </div>
+
+        <div class="media-panel" id="media-videos" hidden>
+          <div class="video-grid" id="video-grid"></div>
+          <p class="no-media" id="no-videos" hidden>لا توجد فيديوهات</p>
+        </div>
       </section>
     </article>
 
@@ -47,7 +56,6 @@
     </div>
   </main>
 
-  <!-- Lightbox -->
   <div class="lightbox" id="lightbox" hidden>
     <button class="lightbox-close" id="lightbox-close" aria-label="إغلاق">×</button>
     <button class="lightbox-nav lightbox-prev" id="lightbox-prev" aria-label="السابق">‹</button>
@@ -56,8 +64,13 @@
     <span class="lightbox-counter" id="lightbox-counter"></span>
   </div>
 
+  <div class="video-feed" id="video-feed" hidden>
+    <button class="video-feed-close" id="video-feed-close" aria-label="إغلاق">×</button>
+    <div class="video-feed-scroll" id="video-feed-scroll"></div>
+  </div>
+
   <footer class="site-footer">
-    <p>© Bevel · تصميم وبناء</p>
+    <p>© Bevel · تصميم وتنفيذ</p>
   </footer>
 
   <script src="js/app.js"></script>

@@ -5,12 +5,6 @@
       {
         "slug": "مشروع تشطيب بوبايز شارع الأحساء",
         "name": "مشروع تشطيب بوبايز شارع الأحساء",
-        "nameEn": "",
-        "scope": "",
-        "location": "",
-        "representative": {},
-        "year": null,
-        "description": "",
         "photos": [
           {
             "name": "APNQkAE-PzNC9Y0V_CBV8EI4YP04fzGrfMf1sNFG4ZOIftgnpFAwRnGtcd7gGMLGCioOo5pHYn2jQIxhS1zL3dVyaIDE64bfgd96_seRPrBUKIqkRcN8OxW_YN9fHNbNBZCobC7t9TU=s1016-k-no.jpeg",
@@ -273,12 +267,6 @@
       {
         "slug": "مشروع تشطيب جوس برس",
         "name": "مشروع تشطيب جوس برس",
-        "nameEn": "",
-        "scope": "",
-        "location": "",
-        "representative": {},
-        "year": null,
-        "description": "",
         "photos": [
           {
             "name": "AF1QipP9_I4gDaz54jW7GKu498PHREDer7jQvOa7BLYg=s773-k-no.jpeg",
@@ -366,18 +354,24 @@
             "name": "videoplayback (1).mp4",
             "id": "1qmsZlX4IqJed0Vd5rb9ICv1sfUlvqeZY",
             "url": "https://drive.google.com/file/d/1qmsZlX4IqJed0Vd5rb9ICv1sfUlvqeZY/preview",
+            "viewUrl": "https://drive.google.com/file/d/1qmsZlX4IqJed0Vd5rb9ICv1sfUlvqeZY/view",
+            "streamUrl": "https://drive.google.com/uc?export=download&id=1qmsZlX4IqJed0Vd5rb9ICv1sfUlvqeZY",
             "embed": true
           },
           {
             "name": "videoplayback (2).mp4",
             "id": "1dq9EkBdlulFBolbBeUIfumd___Xb85OO",
             "url": "https://drive.google.com/file/d/1dq9EkBdlulFBolbBeUIfumd___Xb85OO/preview",
+            "viewUrl": "https://drive.google.com/file/d/1dq9EkBdlulFBolbBeUIfumd___Xb85OO/view",
+            "streamUrl": "https://drive.google.com/uc?export=download&id=1dq9EkBdlulFBolbBeUIfumd___Xb85OO",
             "embed": true
           },
           {
             "name": "videoplayback.mp4",
             "id": "1OQRM-fgPPo9NPsZwGfklgBALYf5_ToEQ",
             "url": "https://drive.google.com/file/d/1OQRM-fgPPo9NPsZwGfklgBALYf5_ToEQ/preview",
+            "viewUrl": "https://drive.google.com/file/d/1OQRM-fgPPo9NPsZwGfklgBALYf5_ToEQ/view",
+            "streamUrl": "https://drive.google.com/uc?export=download&id=1OQRM-fgPPo9NPsZwGfklgBALYf5_ToEQ",
             "embed": true
           }
         ],
@@ -390,12 +384,6 @@
       {
         "slug": "مشروع تشطيب صالات سكلبتو",
         "name": "مشروع تشطيب صالات سكلبتو",
-        "nameEn": "",
-        "scope": "",
-        "location": "",
-        "representative": {},
-        "year": null,
-        "description": "",
         "photos": [
           {
             "name": "AF1QipM8uMRLQp-HqcQYv8arNkvs0ndjrA3WDFTNwTN_=s812-k-no.jpeg",
@@ -553,12 +541,16 @@
             "name": "videoplayback (1).mp4",
             "id": "1eQWuP9VLQ_fqUg7FzdgDf_7bjAtgW7Z4",
             "url": "https://drive.google.com/file/d/1eQWuP9VLQ_fqUg7FzdgDf_7bjAtgW7Z4/preview",
+            "viewUrl": "https://drive.google.com/file/d/1eQWuP9VLQ_fqUg7FzdgDf_7bjAtgW7Z4/view",
+            "streamUrl": "https://drive.google.com/uc?export=download&id=1eQWuP9VLQ_fqUg7FzdgDf_7bjAtgW7Z4",
             "embed": true
           },
           {
             "name": "videoplayback.mp4",
             "id": "1RC8MHVny0E2781DFTYhU4ELeZ8i93eiQ",
             "url": "https://drive.google.com/file/d/1RC8MHVny0E2781DFTYhU4ELeZ8i93eiQ/preview",
+            "viewUrl": "https://drive.google.com/file/d/1RC8MHVny0E2781DFTYhU4ELeZ8i93eiQ/view",
+            "streamUrl": "https://drive.google.com/uc?export=download&id=1RC8MHVny0E2781DFTYhU4ELeZ8i93eiQ",
             "embed": true
           }
         ],
@@ -571,12 +563,6 @@
       {
         "slug": "مشروع تشطيب صالون فاب اند فانسي",
         "name": "مشروع تشطيب صالون فاب اند فانسي",
-        "nameEn": "",
-        "scope": "",
-        "location": "",
-        "representative": {},
-        "year": null,
-        "description": "",
         "photos": [
           {
             "name": "AF1QipMPVFrs8CNLw2k83VxIekmAN6tY1icYAIHFj--7=s1354-k-no.jpeg",

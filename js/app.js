@@ -1,6 +1,5 @@
 /**
  * Bevel Portfolio App
- * Loads manifest.json and renders portfolio pages for GitHub Pages.
  */
 
 const App = (() => {
@@ -14,6 +13,8 @@ const App = (() => {
   let manifest = null;
   let lightboxPhotos = [];
   let lightboxIndex = 0;
+  let currentVideos = [];
+  let videoFeedObserver = null;
 
   async function loadManifest() {
     if (manifest) return manifest;
@@ -55,7 +56,7 @@ const App = (() => {
   }
 
   function renderLogo(linkHome = true) {
-    const inner = `<img src="${LOGO_SRC}" alt="Bevel" class="logo-img" width="120" height="40">`;
+    const inner = `<img src="${LOGO_SRC}" alt="Bevel" class="logo-img">`;
     return linkHome
       ? `<a href="index.html" class="logo">${inner}</a>`
       : `<div class="logo">${inner}</div>`;
@@ -97,7 +98,6 @@ const App = (() => {
     try {
       const data = await loadManifest();
       const projects = data.categories[cat] || [];
-
       loading.hidden = true;
 
       if (projects.length === 0) {
@@ -118,9 +118,7 @@ const App = (() => {
       ? `<img src="${mediaUrl(category, project.slug, project.thumbnail)}" alt="${escapeHtml(project.name)}" loading="lazy">`
       : `<div class="project-thumb-placeholder">${CATEGORIES[category]?.icon || '◆'}</div>`;
 
-    const subtitle = hasValue(project.description)
-      ? escapeHtml(project.description)
-      : '';
+    const subtitle = hasValue(project.description) ? escapeHtml(project.description) : '';
 
     return `
       <a href="${projectUrl(category, project.slug)}" class="project-card">
@@ -164,7 +162,9 @@ const App = (() => {
       loading.hidden = true;
       detail.hidden = false;
       initLightbox();
-      initVideos();
+      initMediaToggle(project);
+      initVideoThumbs();
+      initVideoFeed();
     } catch (e) {
       loading.textContent = 'حدث خطأ في تحميل البيانات';
       console.error(e);
@@ -180,6 +180,8 @@ const App = (() => {
       hero.innerHTML = `<img src="${mediaUrl(category, project.slug, project.thumbnail)}" alt="${escapeHtml(project.name)}">`;
     } else if (project.photos?.length) {
       hero.innerHTML = `<img src="${mediaUrl(category, project.slug, project.photos[0])}" alt="${escapeHtml(project.name)}">`;
+    } else {
+      hero.innerHTML = '';
     }
 
     const info = document.getElementById('info-list');
@@ -223,16 +225,16 @@ const App = (() => {
         </a>`);
     }
 
-    if (actionItems.length) {
-      actions.innerHTML = actionItems.join('');
-      actions.hidden = false;
-    } else {
-      actions.hidden = true;
-    }
+    actions.innerHTML = actionItems.join('');
+    actions.hidden = actionItems.length === 0;
 
     const photos = project.photos || [];
+    currentVideos = project.videos || [];
     const photoGrid = document.getElementById('photo-grid');
+    const videoGrid = document.getElementById('video-grid');
     const noPhotos = document.getElementById('no-photos');
+    const noVideos = document.getElementById('no-videos');
+    const toggleVideos = document.getElementById('toggle-videos');
 
     if (photos.length) {
       lightboxPhotos = photos.map(f => mediaUrl(category, project.slug, f));
@@ -246,78 +248,188 @@ const App = (() => {
       noPhotos.hidden = false;
     }
 
-    const videos = project.videos || [];
-    const videoList = document.getElementById('video-list');
-    const noVideos = document.getElementById('no-videos');
-
-    if (videos.length) {
-      videoList.innerHTML = videos.map((v, i) => renderVideoItem(v, i)).join('');
+    if (currentVideos.length) {
+      videoGrid.innerHTML = currentVideos.map((v, i) => renderVideoThumb(v, i)).join('');
       noVideos.hidden = true;
+      if (toggleVideos) toggleVideos.hidden = false;
     } else {
-      videoList.innerHTML = '';
+      videoGrid.innerHTML = '';
       noVideos.hidden = false;
+      if (toggleVideos) toggleVideos.hidden = true;
+      setMediaTab('photos');
     }
   }
 
-  function renderVideoItem(video, index) {
-    const embedUrl = video.url || '';
-    const viewUrl = video.viewUrl || embedUrl.replace('/preview', '/view');
-    const streamUrl = video.streamUrl || '';
-    const title = escapeHtml(video.name || `فيديو ${index + 1}`);
+  function renderVideoThumb(video, index) {
+    const poster = video.thumbnail || video.poster || '';
+    const posterHtml = poster
+      ? `<img src="${escapeHtml(poster)}" alt="" loading="lazy">`
+      : `<div class="video-thumb-fallback">▶</div>`;
 
     return `
-      <div class="video-item" data-index="${index}">
-        <div class="video-player" id="video-player-${index}">
-          <button type="button" class="video-play-btn" data-embed="${escapeHtml(embedUrl)}"
-            data-stream="${escapeHtml(streamUrl)}" data-view="${escapeHtml(viewUrl)}"
-            aria-label="تشغيل ${title}">
-            <span class="video-play-icon">▶</span>
-            <span class="video-play-label">${title}</span>
-          </button>
-        </div>
-        <a class="video-open-link" href="${escapeHtml(viewUrl)}" target="_blank"
-           rel="noopener noreferrer">فتح الفيديو في Google Drive</a>
-      </div>`;
+      <button type="button" class="video-thumb" data-video-index="${index}" aria-label="تشغيل الفيديو ${index + 1}">
+        ${posterHtml}
+        <span class="video-thumb-play"><span>▶</span></span>
+      </button>`;
   }
 
-  function initVideos() {
-    document.getElementById('video-list')?.addEventListener('click', e => {
-      const btn = e.target.closest('.video-play-btn');
-      if (!btn || btn.dataset.loaded) return;
+  function initMediaToggle(project) {
+    const toggle = document.getElementById('media-toggle');
+    if (!toggle) return;
 
-      const embedUrl = btn.dataset.embed;
-      const streamUrl = btn.dataset.stream;
-      btn.dataset.loaded = '1';
+    const hasPhotos = (project.photos || []).length > 0;
+    const hasVideos = (project.videos || []).length > 0;
+    const photosBtn = document.getElementById('toggle-photos');
+    const videosBtn = document.getElementById('toggle-videos');
 
-      if (streamUrl) {
-        const video = document.createElement('video');
-        video.controls = true;
-        video.playsInline = true;
-        video.preload = 'metadata';
-        video.className = 'video-native';
-        video.src = streamUrl;
-        video.textContent = 'متصفحك لا يدعم تشغيل الفيديو';
-        video.addEventListener('error', () => {
-          video.replaceWith(createVideoIframe(embedUrl));
-        });
-        btn.replaceWith(video);
-        video.play().catch(() => {});
-        return;
-      }
+    if (!hasPhotos && !hasVideos) {
+      toggle.hidden = true;
+      return;
+    }
 
-      btn.replaceWith(createVideoIframe(embedUrl));
+    toggle.hidden = false;
+    if (!hasPhotos) setMediaTab('videos');
+    else setMediaTab('photos');
+
+    photosBtn?.addEventListener('click', () => setMediaTab('photos'));
+    videosBtn?.addEventListener('click', () => setMediaTab('videos'));
+  }
+
+  function setMediaTab(tab) {
+    const photosBtn = document.getElementById('toggle-photos');
+    const videosBtn = document.getElementById('toggle-videos');
+    const photosPanel = document.getElementById('media-photos');
+    const videosPanel = document.getElementById('media-videos');
+
+    const isPhotos = tab === 'photos';
+    photosBtn?.classList.toggle('active', isPhotos);
+    videosBtn?.classList.toggle('active', !isPhotos);
+    if (photosPanel) photosPanel.hidden = !isPhotos;
+    if (videosPanel) videosPanel.hidden = isPhotos;
+  }
+
+  function initVideoThumbs() {
+    document.getElementById('video-grid')?.addEventListener('click', e => {
+      const btn = e.target.closest('.video-thumb');
+      if (!btn) return;
+      openVideoFeed(parseInt(btn.dataset.videoIndex, 10));
     });
   }
 
-  function createVideoIframe(src) {
+  function initVideoFeed() {
+    const feed = document.getElementById('video-feed');
+    const closeBtn = document.getElementById('video-feed-close');
+    closeBtn?.addEventListener('click', closeVideoFeed);
+
+    feed?.addEventListener('click', e => {
+      if (e.target === feed) closeVideoFeed();
+    });
+  }
+
+  function openVideoFeed(startIndex) {
+    if (!currentVideos.length) return;
+
+    const feed = document.getElementById('video-feed');
+    const scroll = document.getElementById('video-feed-scroll');
+    if (!feed || !scroll) return;
+
+    scroll.innerHTML = currentVideos.map((video, i) => `
+      <div class="video-feed-slide" data-index="${i}">
+        <video playsinline webkit-playsinline preload="metadata"
+          data-stream="${escapeHtml(video.streamUrl || '')}"
+          data-embed="${escapeHtml(video.url || '')}"></video>
+        <span class="video-feed-indicator">${i + 1} / ${currentVideos.length}</span>
+      </div>`).join('');
+
+    feed.hidden = false;
+    document.body.style.overflow = 'hidden';
+
+    if (videoFeedObserver) videoFeedObserver.disconnect();
+
+    videoFeedObserver = new IntersectionObserver(entries => {
+      entries.forEach(entry => {
+        const slide = entry.target;
+        const video = slide.querySelector('video');
+        if (!video) return;
+
+        if (entry.isIntersecting && entry.intersectionRatio >= 0.55) {
+          activateVideoSlide(video);
+        } else {
+          video.pause();
+        }
+      });
+    }, { root: scroll, threshold: [0.55, 0.75] });
+
+    scroll.querySelectorAll('.video-feed-slide').forEach(slide => {
+      videoFeedObserver.observe(slide);
+    });
+
+    const target = scroll.children[startIndex];
+    if (target) {
+      target.scrollIntoView({ behavior: 'instant', block: 'start' });
+      const video = target.querySelector('video');
+      if (video) activateVideoSlide(video);
+    }
+  }
+
+  function activateVideoSlide(video) {
+    const scroll = document.getElementById('video-feed-scroll');
+    scroll?.querySelectorAll('video').forEach(v => {
+      if (v !== video) v.pause();
+    });
+
+    if (!video.dataset.loaded) {
+      const stream = video.dataset.stream;
+      const embed = video.dataset.embed;
+      if (stream) {
+        video.src = stream;
+        video.dataset.loaded = '1';
+        video.onended = () => goToNextVideoSlide(video);
+        video.onerror = () => replaceWithIframe(video, embed);
+        video.play().catch(() => replaceWithIframe(video, embed));
+      } else if (embed) {
+        replaceWithIframe(video, embed);
+      }
+      return;
+    }
+
+    video.onended = () => goToNextVideoSlide(video);
+    video.play().catch(() => {});
+  }
+
+  function replaceWithIframe(video, embedUrl) {
+    if (!embedUrl) return;
     const iframe = document.createElement('iframe');
-    iframe.src = src;
-    iframe.className = 'video-embed';
+    iframe.src = embedUrl;
     iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
     iframe.allowFullscreen = true;
-    iframe.loading = 'lazy';
-    iframe.title = 'فيديو المشروع';
-    return iframe;
+    iframe.className = 'video-embed';
+    video.replaceWith(iframe);
+  }
+
+  function goToNextVideoSlide(video) {
+    const slide = video.closest('.video-feed-slide');
+    const scroll = document.getElementById('video-feed-scroll');
+    const next = slide?.nextElementSibling;
+    if (next && scroll) {
+      next.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  function closeVideoFeed() {
+    const feed = document.getElementById('video-feed');
+    const scroll = document.getElementById('video-feed-scroll');
+    if (!feed) return;
+
+    scroll?.querySelectorAll('video').forEach(v => {
+      v.pause();
+      v.removeAttribute('src');
+      v.load();
+    });
+
+    if (videoFeedObserver) videoFeedObserver.disconnect();
+    feed.hidden = true;
+    document.body.style.overflow = '';
   }
 
   function initLightbox() {

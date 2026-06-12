@@ -23,6 +23,7 @@ import shutil
 import subprocess
 import sys
 from pathlib import Path
+from typing import Optional
 
 ROOT = Path(__file__).resolve().parent.parent
 PORTFOLIO_DIR = ROOT / "portfolio"
@@ -92,16 +93,48 @@ def parse_txt_metadata(text: str) -> dict:
     return data
 
 
+def parse_metadata_content(text: str, source: str) -> dict:
+    text = text.strip()
+    if text.startswith("{\\rtf"):
+        print(f"  Warning: {source} is RTF, not JSON. Re-save as UTF-8 JSON in Drive.")
+        return {}
+    try:
+        return json.loads(text)
+    except json.JSONDecodeError as exc:
+        print(f"  Warning: {source} has invalid JSON ({exc})")
+        return {}
+
+
 def load_local_metadata(project_dir: Path) -> dict:
     for name in ("project.json", "info.json"):
         path = project_dir / name
         if path.exists():
-            return json.loads(path.read_text(encoding="utf-8"))
+            return parse_metadata_content(path.read_text(encoding="utf-8"), str(path))
     for name in ("project.txt", "info.txt"):
         path = project_dir / name
         if path.exists():
             return parse_txt_metadata(path.read_text(encoding="utf-8"))
     return {}
+
+
+def find_metadata_dir(category: str, project_key: str) -> Optional[Path]:
+    expected = normalize_name(f"{category}/{project_key}")
+    if not PORTFOLIO_DIR.exists():
+        return None
+
+    direct = PORTFOLIO_DIR / category / Path(*project_key.split("/"))
+    if direct.exists():
+        return direct
+
+    for path in PORTFOLIO_DIR.rglob("project.json"):
+        rel = normalize_name(str(path.parent.relative_to(PORTFOLIO_DIR)).replace("\\", "/"))
+        if rel == expected:
+            return path.parent
+    for path in PORTFOLIO_DIR.rglob("project.txt"):
+        rel = normalize_name(str(path.parent.relative_to(PORTFOLIO_DIR)).replace("\\", "/"))
+        if rel == expected:
+            return path.parent
+    return None
 
 
 def slug_from_path(rel_path: str) -> str:
@@ -130,7 +163,7 @@ def scan_drive_files(folder_id: str) -> list:
     return files
 
 
-def download_metadata_files(files, folder_id: str) -> None:
+def download_metadata_files(files) -> dict:
     import gdown
 
     if PORTFOLIO_DIR.exists():
@@ -139,9 +172,19 @@ def download_metadata_files(files, folder_id: str) -> None:
 
     meta_files = [f for f in files if Path(f.path).name.lower() in META_NAMES]
     print(f"Downloading {len(meta_files)} metadata file(s)...")
+    meta_cache: dict[tuple[str, str], dict] = {}
 
     for item in meta_files:
-        dest = PORTFOLIO_DIR / item.path
+        parts = [normalize_name(p) for p in Path(item.path).parts]
+        if len(parts) < 2:
+            continue
+        category = parts[0]
+        if category not in CATEGORIES:
+            continue
+        project_key = "/".join(parts[1:-1]) if len(parts) > 2 else parts[1]
+        filename = parts[-1]
+
+        dest = PORTFOLIO_DIR / category / Path(*project_key.split("/")) / filename
         dest.parent.mkdir(parents=True, exist_ok=True)
         gdown.download(
             id=item.id,
@@ -149,6 +192,12 @@ def download_metadata_files(files, folder_id: str) -> None:
             quiet=True,
             use_cookies=False,
         )
+        meta = load_local_metadata(dest.parent)
+        if meta:
+            meta_cache[(category, project_key)] = meta
+            print(f"  Loaded metadata: {category}/{project_key}")
+
+    return meta_cache
 
 
 def build_projects_from_files(files) -> dict:
@@ -205,8 +254,9 @@ def build_projects_from_files(files) -> dict:
     return tree
 
 
-def merge_local_metadata(tree: dict) -> dict:
+def merge_local_metadata(tree: dict, meta_cache: Optional[dict] = None) -> dict:
     manifest = {"categories": {}, "driveFolderId": load_config().get("folderId"), "generated": True}
+    meta_cache = meta_cache or {}
 
     for category in CATEGORIES:
         projects = []
@@ -215,8 +265,11 @@ def merge_local_metadata(tree: dict) -> dict:
                 continue
 
             slug = slug_from_path(project_key)
-            local_dir = PORTFOLIO_DIR / category / Path(*project_key.split("/"))
-            meta = load_local_metadata(local_dir) if local_dir.exists() else {}
+            meta = meta_cache.get((category, project_key), {})
+            if not meta:
+                meta_dir = find_metadata_dir(category, project_key)
+                if meta_dir:
+                    meta = load_local_metadata(meta_dir)
 
             display_name = meta.get("name") or slug.split("/")[-1]
             photos = sorted(data["photos"], key=lambda x: x["name"].lower())
@@ -274,9 +327,9 @@ def main():
 
     files = scan_drive_files(args.folder_id)
     print(f"Found {len(files)} file(s) in Drive tree")
-    download_metadata_files(files, args.folder_id)
+    meta_cache = download_metadata_files(files)
     tree = build_projects_from_files(files)
-    manifest = merge_local_metadata(tree)
+    manifest = merge_local_metadata(tree, meta_cache)
 
     OUTPUT.parent.mkdir(parents=True, exist_ok=True)
     OUTPUT.write_text(json.dumps(manifest, ensure_ascii=False, indent=2), encoding="utf-8")
