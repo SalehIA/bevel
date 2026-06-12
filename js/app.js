@@ -14,7 +14,8 @@ const App = (() => {
   let lightboxPhotos = [];
   let lightboxIndex = 0;
   let currentVideos = [];
-  let videoFeedObserver = null;
+  let activeFeedIndex = -1;
+  let feedScrollEl = null;
 
   async function loadManifest() {
     if (manifest) return manifest;
@@ -319,115 +320,164 @@ const App = (() => {
   function initVideoFeed() {
     const feed = document.getElementById('video-feed');
     const closeBtn = document.getElementById('video-feed-close');
+    feedScrollEl = document.getElementById('video-feed-scroll');
+
     closeBtn?.addEventListener('click', closeVideoFeed);
 
-    feed?.addEventListener('click', e => {
-      if (e.target === feed) closeVideoFeed();
+    feedScrollEl?.addEventListener('scroll', () => {
+      window.requestAnimationFrame(handleFeedScroll);
+    }, { passive: true });
+
+    feedScrollEl?.addEventListener('click', e => {
+      const overlay = e.target.closest('.video-tap-overlay');
+      if (!overlay) return;
+      const slide = overlay.closest('.video-feed-slide');
+      const video = slide?.querySelector('.feed-video');
+      if (!video) return;
+      if (video.paused) {
+        video.play().then(() => overlay.classList.remove('is-paused')).catch(() => {});
+      } else {
+        video.pause();
+        overlay.classList.add('is-paused');
+      }
     });
+  }
+
+  function handleFeedScroll() {
+    if (!feedScrollEl) return;
+    const index = getFeedSlideIndex();
+    if (index >= 0 && index !== activeFeedIndex) {
+      playFeedSlide(index);
+    }
+  }
+
+  function getFeedSlideIndex() {
+    if (!feedScrollEl || !feedScrollEl.children.length) return 0;
+    const h = feedScrollEl.clientHeight || window.innerHeight;
+    return Math.min(
+      currentVideos.length - 1,
+      Math.max(0, Math.round(feedScrollEl.scrollTop / h))
+    );
   }
 
   function openVideoFeed(startIndex) {
     if (!currentVideos.length) return;
 
     const feed = document.getElementById('video-feed');
-    const scroll = document.getElementById('video-feed-scroll');
-    if (!feed || !scroll) return;
+    feedScrollEl = document.getElementById('video-feed-scroll');
+    if (!feed || !feedScrollEl) return;
 
-    scroll.innerHTML = currentVideos.map((video, i) => `
+    feedScrollEl.innerHTML = currentVideos.map((video, i) => `
       <div class="video-feed-slide" data-index="${i}">
-        <video playsinline webkit-playsinline preload="metadata"
-          data-stream="${escapeHtml(video.streamUrl || '')}"
-          data-embed="${escapeHtml(video.url || '')}"></video>
+        <div class="video-slide-inner">
+          <video class="feed-video" playsinline webkit-playsinline preload="auto"></video>
+          <button type="button" class="video-tap-overlay" aria-label="تشغيل / إيقاف">
+            <span class="video-tap-icon">▶</span>
+          </button>
+        </div>
         <span class="video-feed-indicator">${i + 1} / ${currentVideos.length}</span>
       </div>`).join('');
 
     feed.hidden = false;
     document.body.style.overflow = 'hidden';
+    activeFeedIndex = -1;
 
-    if (videoFeedObserver) videoFeedObserver.disconnect();
-
-    videoFeedObserver = new IntersectionObserver(entries => {
-      entries.forEach(entry => {
-        const slide = entry.target;
-        const video = slide.querySelector('video');
-        if (!video) return;
-
-        if (entry.isIntersecting && entry.intersectionRatio >= 0.55) {
-          activateVideoSlide(video);
-        } else {
-          video.pause();
-        }
-      });
-    }, { root: scroll, threshold: [0.55, 0.75] });
-
-    scroll.querySelectorAll('.video-feed-slide').forEach(slide => {
-      videoFeedObserver.observe(slide);
+    requestAnimationFrame(() => {
+      feedScrollEl.scrollTop = startIndex * feedScrollEl.clientHeight;
+      playFeedSlide(startIndex);
     });
-
-    const target = scroll.children[startIndex];
-    if (target) {
-      target.scrollIntoView({ behavior: 'instant', block: 'start' });
-      const video = target.querySelector('video');
-      if (video) activateVideoSlide(video);
-    }
   }
 
-  function activateVideoSlide(video) {
-    const scroll = document.getElementById('video-feed-scroll');
-    scroll?.querySelectorAll('video').forEach(v => {
-      if (v !== video) v.pause();
-    });
+  function playFeedSlide(index) {
+    if (!feedScrollEl || index < 0 || index >= currentVideos.length) return;
 
-    if (!video.dataset.loaded) {
-      const stream = video.dataset.stream;
-      const embed = video.dataset.embed;
-      if (stream) {
-        video.src = stream;
-        video.dataset.loaded = '1';
-        video.onended = () => goToNextVideoSlide(video);
-        video.onerror = () => replaceWithIframe(video, embed);
-        video.play().catch(() => replaceWithIframe(video, embed));
-      } else if (embed) {
-        replaceWithIframe(video, embed);
+    stopAllFeedVideos();
+
+    activeFeedIndex = index;
+    const slide = feedScrollEl.children[index];
+    const video = slide.querySelector('.feed-video');
+    const overlay = slide.querySelector('.video-tap-overlay');
+    const data = currentVideos[index];
+    if (!video) return;
+
+    overlay?.classList.remove('is-paused');
+
+    const startPlayback = () => {
+    video.onended = () => {
+      if (index < currentVideos.length - 1) {
+        const next = index + 1;
+        feedScrollEl.scrollTo({ top: next * feedScrollEl.clientHeight, behavior: 'smooth' });
+        window.setTimeout(() => playFeedSlide(next), 400);
+      }
+    };
+
+      video.play()
+        .then(() => overlay?.classList.remove('is-paused'))
+        .catch(() => {
+          overlay?.classList.add('is-paused');
+          showFeedFallback(slide, data);
+        });
+    };
+
+    if (video.dataset.loaded === '1') {
+      startPlayback();
+      return;
+    }
+
+    const stream = data.streamUrl || '';
+    const embed = data.url || '';
+
+    if (stream) {
+      video.src = stream;
+      video.dataset.loaded = '1';
+      if (video.readyState >= 2) {
+        startPlayback();
+      } else {
+        video.addEventListener('canplay', startPlayback, { once: true });
+        video.addEventListener('error', () => showFeedFallback(slide, data), { once: true });
       }
       return;
     }
 
-    video.onended = () => goToNextVideoSlide(video);
-    video.play().catch(() => {});
+    showFeedFallback(slide, data, embed);
   }
 
-  function replaceWithIframe(video, embedUrl) {
-    if (!embedUrl) return;
-    const iframe = document.createElement('iframe');
-    iframe.src = embedUrl;
-    iframe.allow = 'autoplay; encrypted-media; picture-in-picture; fullscreen';
-    iframe.allowFullscreen = true;
-    iframe.className = 'video-embed';
-    video.replaceWith(iframe);
+  function stopAllFeedVideos() {
+    feedScrollEl?.querySelectorAll('.feed-video').forEach(video => {
+      video.pause();
+      video.onended = null;
+    });
+    feedScrollEl?.querySelectorAll('.video-tap-overlay').forEach(overlay => {
+      overlay.classList.add('is-paused');
+    });
   }
 
-  function goToNextVideoSlide(video) {
-    const slide = video.closest('.video-feed-slide');
-    const scroll = document.getElementById('video-feed-scroll');
-    const next = slide?.nextElementSibling;
-    if (next && scroll) {
-      next.scrollIntoView({ behavior: 'smooth', block: 'start' });
-    }
+  function showFeedFallback(slide, data, embedUrl) {
+    const existing = slide.querySelector('.video-feed-fallback');
+    if (existing) return;
+
+    const link = document.createElement('a');
+    link.className = 'video-feed-fallback';
+    link.href = data.viewUrl || embedUrl || data.url || '#';
+    link.target = '_blank';
+    link.rel = 'noopener noreferrer';
+    link.textContent = 'فتح الفيديو';
+    slide.appendChild(link);
   }
 
   function closeVideoFeed() {
     const feed = document.getElementById('video-feed');
-    const scroll = document.getElementById('video-feed-scroll');
     if (!feed) return;
 
-    scroll?.querySelectorAll('video').forEach(v => {
-      v.pause();
-      v.removeAttribute('src');
-      v.load();
+    stopAllFeedVideos();
+    feedScrollEl?.querySelectorAll('.feed-video').forEach(video => {
+      video.removeAttribute('src');
+      video.load();
+      delete video.dataset.loaded;
     });
 
-    if (videoFeedObserver) videoFeedObserver.disconnect();
+    if (feedScrollEl) feedScrollEl.innerHTML = '';
+    activeFeedIndex = -1;
     feed.hidden = true;
     document.body.style.overflow = '';
   }

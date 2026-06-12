@@ -13,8 +13,8 @@
   --radius-lg: 20px;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
-  --header-h: 72px;
-  --font: 'IBM Plex Sans Arabic', system-ui, sans-serif;
+  --header-h: 140px;
+  --font: 'Cairo', system-ui, sans-serif;
 }
 
 *, *::before, *::after {
@@ -68,7 +68,7 @@ img, video {
   justify-content: space-between;
   gap: 12px;
   width: 100%;
-  min-height: 52px;
+  min-height: 80px;
   position: relative;
 }
 
@@ -83,7 +83,7 @@ img, video {
 .header-main {
   flex: 1;
   min-width: 0;
-  padding-left: 148px;
+  padding-left: 240px;
 }
 
 .logo {
@@ -92,9 +92,9 @@ img, video {
 }
 
 .logo-img {
-  height: 52px;
+  height: 125px;
   width: auto;
-  max-width: 180px;
+  max-width: 420px;
   object-fit: contain;
 }
 
@@ -509,27 +509,83 @@ main {
   scroll-snap-type: y mandatory;
   -webkit-overflow-scrolling: touch;
   overscroll-behavior-y: contain;
+  scroll-behavior: smooth;
 }
 
 .video-feed-slide {
   height: 100dvh;
+  width: 100%;
   scroll-snap-align: start;
   scroll-snap-stop: always;
+  position: relative;
+  background: #000;
+  overflow: hidden;
+}
+
+.video-slide-inner {
+  width: 100%;
+  height: 100%;
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
-  position: relative;
-  background: #000;
 }
 
-.video-feed-slide video,
-.video-feed-slide iframe {
+.feed-video {
   width: 100%;
   height: 100%;
   max-height: 100dvh;
-  object-fit: contain;
-  border: none;
+  object-fit: cover;
   background: #000;
+}
+
+.video-tap-overlay {
+  position: absolute;
+  inset: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  z-index: 2;
+}
+
+.video-tap-overlay.is-paused {
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.video-tap-icon {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 64px;
+  height: 64px;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.88);
+  color: #111;
+  display: none;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.5rem;
+  padding-right: 4px;
+  pointer-events: none;
+}
+
+.video-tap-overlay.is-paused .video-tap-icon {
+  display: flex;
+}
+
+.video-feed-fallback {
+  position: absolute;
+  bottom: calc(72px + var(--safe-bottom));
+  left: 50%;
+  transform: translateX(-50%);
+  color: #fff;
+  background: rgba(0, 0, 0, 0.55);
+  padding: 10px 16px;
+  border-radius: 999px;
+  font-size: 0.8125rem;
+  z-index: 3;
+  white-space: nowrap;
 }
 
 .video-feed-indicator {

@@ -93,14 +93,67 @@ def parse_txt_metadata(text: str) -> dict:
     return data
 
 
+def rtf_to_plain(raw: str) -> str:
+    """Decode macOS RTF content to searchable plain text."""
+    text = raw
+
+    def decode_hex(match: re.Match) -> str:
+        return bytes([int(match.group(1), 16)]).decode("cp1256", errors="replace")
+
+    text = re.sub(r"\\'([0-9a-fA-F]{2})", decode_hex, text)
+    text = re.sub(r"\\uc0\\u(-?\d+)", lambda m: chr(int(m.group(1)) & 0xFFFF), text)
+    text = re.sub(r"\\u(-?\d+)\?", lambda m: chr(int(m.group(1)) & 0xFFFF), text)
+    text = re.sub(r"\\[a-z]+\d*", "", text, flags=re.IGNORECASE)
+    text = re.sub(r"\\[\\{}]", "", text)
+    text = re.sub(r"[\u200e\u200f\u202a-\u202e\u8234-\u8238]", "", text)
+    text = re.sub(r"\s+", " ", text)
+    return text
+
+
+def extract_fields_from_text(text: str) -> dict:
+    """Extract known metadata fields even from messy RTF-derived text."""
+    meta: dict = {}
+    compact = re.sub(r"\s+", "", text)
+
+    for key in ("name", "description"):
+        match = re.search(rf'"{key}"\s*:\s*"([^"]+)"', text)
+        if match:
+            meta[key] = match.group(1).strip()
+
+    link_match = re.search(r'"locationLink"\s*:\s*"(https?[^"]+)"', compact, re.I)
+    if link_match:
+        meta["locationLink"] = link_match.group(1)
+
+    engineer: dict = {}
+    eng_name = re.search(r'"siteEngineer"[\s\S]*?"name"\s*:\s*"([^"]+)"', text)
+    eng_phone = re.search(r'"phone"\s*:\s*"([^"]+)"', text)
+    if eng_name:
+        engineer["name"] = eng_name.group(1).strip()
+    if eng_phone:
+        engineer["phone"] = eng_phone.group(1).strip()
+    if engineer:
+        meta["siteEngineer"] = engineer
+
+    return meta
+
+
 def parse_metadata_content(text: str, source: str) -> dict:
     text = text.strip()
     if text.startswith("{\\rtf"):
-        print(f"  Warning: {source} is RTF, not JSON. Re-save as UTF-8 JSON in Drive.")
+        plain = rtf_to_plain(text)
+        meta = extract_fields_from_text(plain)
+        if meta:
+            print(f"  Parsed RTF metadata from {source}")
+            return meta
+        print(f"  Warning: could not parse RTF metadata in {source}")
         return {}
+
     try:
         return json.loads(text)
     except json.JSONDecodeError as exc:
+        meta = extract_fields_from_text(text)
+        if meta:
+            return meta
         print(f"  Warning: {source} has invalid JSON ({exc})")
         return {}
 

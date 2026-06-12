@@ -383,7 +383,7 @@
       },
       {
         "slug": "مشروع تشطيب صالات سكلبتو",
-        "name": "مشروع تشطيب صالات سكلبتو",
+        "name": "مشروع تصميم وتنفيذ صالات سكلبتو - Sculpto",
         "photos": [
           {
             "name": "AF1QipM8uMRLQp-HqcQYv8arNkvs0ndjrA3WDFTNwTN_=s812-k-no.jpeg",
@@ -558,6 +558,12 @@
           "name": "AF1QipM8uMRLQp-HqcQYv8arNkvs0ndjrA3WDFTNwTN_=s812-k-no.jpeg",
           "id": "1yDpGxqk1VQwxFDGuDbIBFzvjgjQ6yJh9",
           "url": "https://drive.google.com/thumbnail?id=1yDpGxqk1VQwxFDGuDbIBFzvjgjQ6yJh9&sz=w1200"
+        },
+        "description": "وصف المشروع — نطاق العمل، التفاصيل، أو أي ملاحظات مهمة.",
+        "locationLink": "https://maps.google.com/?q=24.7136,46.6753",
+        "siteEngineer": {
+          "name": "م محمد عيتاني",
+          "phone": "+966501234567"
         }
       },
       {
