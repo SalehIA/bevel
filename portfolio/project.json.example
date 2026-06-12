@@ -1,0 +1,9 @@
+{
+  "name": "اسم المشروع",
+  "description": "وصف المشروع",
+  "locationLink": "https://maps.google.com/?q=24.7136,46.6753",
+  "siteEngineer": {
+    "name": "اسم مهندس الموقع",
+    "phone": "+966501234567"
+  }
+}
