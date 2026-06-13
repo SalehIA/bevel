@@ -48,14 +48,14 @@ const App = (() => {
     const filename = typeof media === 'string' ? media : media?.name;
     if (!filename) return '';
     const slugParts = slug.split('/').map(encodeURIComponent).join('/');
-    return `projects/${encodeURIComponent(category)}/${slugParts}/${encodeURIComponent(filename)}`;
+    const fileParts = filename.split('/').map(encodeURIComponent).join('/');
+    return `projects/${encodeURIComponent(category)}/${slugParts}/${fileParts}`;
   }
 
   function videoSrc(category, slug, video) {
-    if (video?.streamUrl) return video.streamUrl;
     const name = typeof video === 'string' ? video : video?.name;
     if (name) return mediaUrl(category, slug, name);
-    return video?.url || '';
+    return video?.streamUrl || video?.url || '';
   }
 
   function formatPhone(phone) {

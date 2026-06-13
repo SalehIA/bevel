@@ -1,0 +1,13 @@
+[Unit]
+Description=Bevel Portfolio Admin API
+After=network.target
+
+[Service]
+WorkingDirectory=/var/www/bevel
+EnvironmentFile=-/var/www/bevel/.env
+ExecStart=/var/www/bevel/server/venv/bin/gunicorn -w 2 -b 127.0.0.1:8088 --chdir /var/www/bevel/server app:app
+Restart=always
+User=root
+
+[Install]
+WantedBy=multi-user.target

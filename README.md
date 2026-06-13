@@ -11,6 +11,24 @@ Mobile-first RTL portfolio for **Bevel** (تصميم · تنفيذ).
 /portfolio/data/      Generated manifest.json
 ```
 
+## Admin panel
+
+URL: `/admin/` (after deploy)
+
+Default password is set on the server in `/var/www/bevel/.env` (`BEVEL_ADMIN_PASSWORD`). Change it after first login setup:
+
+```bash
+ssh bevel-vps
+nano /var/www/bevel/.env
+systemctl restart bevel-admin
+```
+
+From the admin panel you can:
+- Create and edit projects (name, description, location, engineer)
+- Upload photos and videos
+- Delete files and projects
+- Rebuild the portfolio manifest
+
 ## Hosting (VPS)
 
 Production server: `147.93.95.109` (domain pending)
