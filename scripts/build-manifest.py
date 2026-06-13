@@ -21,8 +21,8 @@ import re
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
-PORTFOLIO_DIR = ROOT / "portfolio"
-OUTPUT = ROOT / "data" / "manifest.json"
+PROJECTS_DIR = ROOT / "portfolio" / "projects"
+OUTPUT = ROOT / "portfolio" / "data" / "manifest.json"
 
 CATEGORIES = ["التصميم", "التنفيذ"]
 IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".heic", ".svg"}
@@ -102,7 +102,7 @@ def build_manifest() -> dict:
     manifest = {"categories": {}, "generated": True}
 
     for category in CATEGORIES:
-        cat_dir = PORTFOLIO_DIR / category
+        cat_dir = PROJECTS_DIR / category
         projects = []
 
         if not cat_dir.exists():

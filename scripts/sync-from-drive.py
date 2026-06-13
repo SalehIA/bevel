@@ -26,9 +26,9 @@ from pathlib import Path
 from typing import Optional
 
 ROOT = Path(__file__).resolve().parent.parent
-PORTFOLIO_DIR = ROOT / "portfolio"
-OUTPUT = ROOT / "data" / "manifest.json"
-CONFIG = ROOT / "drive.config.json"
+PROJECTS_DIR = ROOT / "portfolio" / "projects"
+OUTPUT = ROOT / "portfolio" / "data" / "manifest.json"
+CONFIG = ROOT / "scripts" / "drive.config.json"
 
 CATEGORIES = ["التصميم", "التنفيذ"]
 IMAGE_EXT = {".jpg", ".jpeg", ".png", ".webp", ".gif", ".heic", ".svg"}
@@ -206,17 +206,17 @@ def load_local_metadata(project_dir: Path) -> dict:
 
 def find_metadata_dir(category: str, project_key: str) -> Optional[Path]:
     expected = normalize_name(f"{category}/{project_key}")
-    if not PORTFOLIO_DIR.exists():
+    if not PROJECTS_DIR.exists():
         return None
 
-    direct = PORTFOLIO_DIR / category / Path(*project_key.split("/"))
+    direct = PROJECTS_DIR / category / Path(*project_key.split("/"))
     if direct.exists():
         return direct
 
-    for path in PORTFOLIO_DIR.rglob("*"):
+    for path in PROJECTS_DIR.rglob("*"):
         if not path.is_file() or not is_meta_file(path.name):
             continue
-        rel = normalize_name(str(path.parent.relative_to(PORTFOLIO_DIR)).replace("\\", "/"))
+        rel = normalize_name(str(path.parent.relative_to(PROJECTS_DIR)).replace("\\", "/"))
         if rel == expected or rel.endswith(f"/{project_key}") or rel.split("/")[0] == project_key:
             meta = load_local_metadata(path.parent)
             if meta:
@@ -253,8 +253,8 @@ def scan_drive_files(folder_id: str) -> list:
 def download_metadata_files(files) -> dict:
     import gdown
 
-    if PORTFOLIO_DIR.exists():
-        for item in PORTFOLIO_DIR.iterdir():
+    if PROJECTS_DIR.exists():
+        for item in PROJECTS_DIR.iterdir():
             if item.name == "project.json.example":
                 continue
             if item.is_dir():
@@ -262,7 +262,7 @@ def download_metadata_files(files) -> dict:
             else:
                 item.unlink()
     else:
-        PORTFOLIO_DIR.mkdir(parents=True)
+        PROJECTS_DIR.mkdir(parents=True)
 
     meta_files = [f for f in files if is_meta_file(Path(f.path).name)]
     print(f"Downloading {len(meta_files)} metadata file(s)...")
@@ -277,7 +277,7 @@ def download_metadata_files(files) -> dict:
         if category not in CATEGORIES:
             continue
 
-        dest_dir = PORTFOLIO_DIR / category / project_key
+        dest_dir = PROJECTS_DIR / category / project_key
         dest_dir.mkdir(parents=True, exist_ok=True)
         dest = dest_dir / "project.json"
         gdown.download(

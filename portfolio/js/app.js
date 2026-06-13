@@ -14,33 +14,17 @@ const App = (() => {
   let lightboxPhotos = [];
   let lightboxIndex = 0;
   let currentVideos = [];
+  let currentCategory = '';
+  let currentSlug = '';
   let activeFeedIndex = -1;
   let feedScrollEl = null;
 
   async function loadManifest() {
     if (manifest) return manifest;
 
-    const configRes = await fetch('drive.config.json');
-    const config = await configRes.json();
-
     document.querySelectorAll('.loading').forEach(el => {
-      el.textContent = 'جاري التحميل من Google Drive...';
+      el.textContent = 'جاري التحميل...';
     });
-
-    if (config.appsScriptUrl) {
-      const sep = config.appsScriptUrl.includes('?') ? '&' : '?';
-      const url = `${config.appsScriptUrl}${sep}t=${Date.now()}`;
-      const res = await fetch(url);
-      if (!res.ok) throw new Error('Failed to load portfolio from Google Drive');
-      manifest = await res.json();
-      if (manifest.error) throw new Error(manifest.error);
-      return manifest;
-    }
-
-    if (config.apiKey && typeof DriveLoader !== 'undefined') {
-      manifest = await DriveLoader.buildManifest(config);
-      return manifest;
-    }
 
     const res = await fetch(`${MANIFEST_URL}?t=${Date.now()}`);
     if (!res.ok) throw new Error('Failed to load portfolio data');
@@ -61,12 +45,17 @@ const App = (() => {
   }
 
   function mediaUrl(category, slug, media) {
-    if (media && typeof media === 'object' && media.url) {
-      return media.url;
-    }
     const filename = typeof media === 'string' ? media : media?.name;
+    if (!filename) return '';
     const slugParts = slug.split('/').map(encodeURIComponent).join('/');
-    return `portfolio/${encodeURIComponent(category)}/${slugParts}/${encodeURIComponent(filename)}`;
+    return `projects/${encodeURIComponent(category)}/${slugParts}/${encodeURIComponent(filename)}`;
+  }
+
+  function videoSrc(category, slug, video) {
+    if (video?.streamUrl) return video.streamUrl;
+    const name = typeof video === 'string' ? video : video?.name;
+    if (name) return mediaUrl(category, slug, name);
+    return video?.url || '';
   }
 
   function formatPhone(phone) {
@@ -253,6 +242,8 @@ const App = (() => {
     actions.hidden = actionItems.length === 0;
 
     const photos = project.photos || [];
+    currentCategory = category;
+    currentSlug = project.slug;
     currentVideos = project.videos || [];
     const photoGrid = document.getElementById('photo-grid');
     const videoGrid = document.getElementById('video-grid');
@@ -447,7 +438,7 @@ const App = (() => {
       return;
     }
 
-    const stream = data.streamUrl || '';
+    const stream = videoSrc(currentCategory, currentSlug, data);
     const embed = data.url || '';
 
     if (stream) {
