@@ -1,0 +1,17 @@
+[Unit]
+Description=Bevel Next.js App
+After=network.target
+
+[Service]
+Type=simple
+User=root
+WorkingDirectory=/var/www/bevel
+Environment=NODE_ENV=production
+Environment=PORT=3000
+EnvironmentFile=-/var/www/bevel/apps/web/.env.local
+ExecStart=/usr/bin/npm run start -w web
+Restart=on-failure
+RestartSec=5
+
+[Install]
+WantedBy=multi-user.target

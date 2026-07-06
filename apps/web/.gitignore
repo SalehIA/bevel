@@ -1,11 +1,11 @@
 # dependencies
-node_modules/
-.pnp
+/node_modules
+/.pnp
 .pnp.*
 
 # next.js
-.next/
-out/
+/.next/
+/out/
 
 # production
 /build
@@ -22,7 +22,7 @@ npm-debug.log*
 !.env.example
 
 # data runtime files
-apps/web/data/*.json
+/data/*.json
 
 # typescript
 next-env.d.ts

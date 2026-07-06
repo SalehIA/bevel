@@ -1,0 +1,135 @@
+@import "tailwindcss";
+
+:root {
+  --brand: #4e5342;
+  --brand-dark: #3d4234;
+  --accent: #c9a962;
+  --surface: #f4f5f2;
+  --text: #1f221c;
+  --muted: #6b7164;
+}
+
+@theme inline {
+  --color-brand: var(--brand);
+  --color-brand-dark: var(--brand-dark);
+  --color-accent: var(--accent);
+  --color-surface: var(--surface);
+  --font-sans: var(--font-cairo);
+}
+
+html {
+  scroll-behavior: smooth;
+  overflow-x: clip;
+}
+
+body {
+  background: var(--surface);
+  color: var(--text);
+  font-family: var(--font-cairo), system-ui, sans-serif;
+  overflow-x: clip;
+}
+
+/* Marquee wrapper must clip animated track */
+.hero-marquee-track {
+  display: flex;
+  width: max-content;
+}
+
+/* Hero ambient glow pulse */
+@keyframes hero-glow {
+  0%, 100% { opacity: 0.4; transform: scale(1); }
+  50% { opacity: 0.7; transform: scale(1.08); }
+}
+
+.hero-glow {
+  animation: hero-glow 8s ease-in-out infinite;
+}
+
+.hero-glow-delay {
+  animation: hero-glow 10s ease-in-out infinite 2s;
+}
+
+/* Marquee ticker like abvtek */
+@keyframes marquee {
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-50%, 0, 0); }
+}
+
+.hero-marquee {
+  animation: marquee 40s linear infinite;
+  will-change: transform;
+}
+
+/* Menu rows — accent row leads, actual menu row follows immediately after */
+.menu-row-accent-lead,
+.menu-row-content-follow {
+  position: absolute;
+  inset: 0;
+  transform: translate3d(-100%, 0, 0);
+  transition: transform 0.62s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+
+.menu-row-accent-lead {
+  background-color: var(--accent);
+  z-index: 1;
+}
+
+.menu-row-content-follow {
+  z-index: 2;
+}
+
+.menu-row-accent-lead.is-in,
+.menu-row-content-follow.is-in {
+  transform: translate3d(0, 0, 0);
+}
+
+@media (max-width: 1023px) {
+  .menu-row-accent-lead,
+  .menu-row-content-follow {
+    transform: translate3d(100%, 0, 0);
+  }
+}
+
+.menu-link-reveal {
+  display: block;
+  opacity: 0;
+  transform: translate3d(0, 110%, 0);
+  transition:
+    opacity 0.62s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.62s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform, opacity;
+}
+
+.menu-link-reveal.is-visible {
+  opacity: 1;
+  transform: translate3d(0, 0, 0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-glow,
+  .hero-glow-delay,
+  .hero-marquee {
+    animation: none;
+  }
+
+  .menu-row-accent-lead,
+  .menu-row-content-follow {
+    transition-duration: 0.01ms;
+    transform: none !important;
+  }
+
+  .menu-row-accent-lead {
+    background-color: transparent !important;
+  }
+
+  .menu-link-reveal {
+    transition-duration: 0.01ms;
+    opacity: 1 !important;
+    transform: none !important;
+  }
+}
