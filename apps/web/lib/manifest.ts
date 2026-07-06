@@ -118,6 +118,23 @@ export function buildManifest(): Manifest {
         if (Array.isArray(meta.tags) && meta.tags.length) {
           project.tags = meta.tags;
         }
+        if (Array.isArray(meta.visibleOnPages) && meta.visibleOnPages.length) {
+          project.visibleOnPages = meta.visibleOnPages;
+        }
+        if (meta.photosByPage && typeof meta.photosByPage === "object") {
+          const photosByPage: Record<string, string[]> = {};
+          for (const [pageId, names] of Object.entries(meta.photosByPage)) {
+            if (!Array.isArray(names)) continue;
+            const picked = names.filter(
+              (name) => typeof name === "string" && orderedPhotos.includes(name)
+            );
+            if (picked.length) photosByPage[pageId] = picked;
+          }
+          if (Object.keys(photosByPage).length) project.photosByPage = photosByPage;
+        }
+        if (meta.pageOrder && typeof meta.pageOrder === "object") {
+          project.pageOrder = meta.pageOrder;
+        }
         projects.push(project);
       }
     }

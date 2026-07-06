@@ -91,6 +91,9 @@ export async function GET(_request: Request, { params }: Params) {
       thumbnail: meta.thumbnail,
       mediaOrder: meta.mediaOrder,
       tags: meta.tags,
+      visibleOnPages: meta.visibleOnPages || [],
+      photosByPage: meta.photosByPage || {},
+      pageOrder: meta.pageOrder || {},
     });
   } catch (error) {
     return Response.json(

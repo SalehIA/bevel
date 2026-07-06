@@ -7,6 +7,7 @@ import {
 } from "./constants";
 import { readJson, writeJson } from "./storage";
 import type { Section, Subsection } from "./types";
+import { isSitePageId } from "./site-pages";
 
 type SectionsStore = { sections: Section[] };
 
@@ -45,6 +46,10 @@ function readProjectMeta(dir: string): Subsection {
     tags: Array.isArray(meta.tags) ? meta.tags : [],
     thumbnail: meta.thumbnail ?? null,
     mediaOrder: Array.isArray(meta.mediaOrder) ? meta.mediaOrder : [],
+    visibleOnPages: Array.isArray(meta.visibleOnPages) ? meta.visibleOnPages : [],
+    photosByPage:
+      meta.photosByPage && typeof meta.photosByPage === "object" ? meta.photosByPage : {},
+    pageOrder: meta.pageOrder && typeof meta.pageOrder === "object" ? meta.pageOrder : {},
   };
 }
 
@@ -220,6 +225,27 @@ export function updateSubsection(
   if (data.tags !== undefined) meta.tags = data.tags;
   if (data.thumbnail !== undefined) meta.thumbnail = data.thumbnail;
   if (data.mediaOrder !== undefined) meta.mediaOrder = data.mediaOrder;
+  if (data.visibleOnPages !== undefined) {
+    meta.visibleOnPages = data.visibleOnPages.filter(
+      (page): page is string => typeof page === "string" && isSitePageId(page)
+    );
+  }
+  if (data.photosByPage !== undefined) {
+    const cleaned: Record<string, string[]> = {};
+    for (const [pageId, names] of Object.entries(data.photosByPage)) {
+      if (!isSitePageId(pageId) || !Array.isArray(names)) continue;
+      cleaned[pageId] = names.filter((name): name is string => typeof name === "string");
+    }
+    meta.photosByPage = cleaned;
+  }
+  if (data.pageOrder !== undefined) {
+    const cleaned: Record<string, number> = {};
+    for (const [pageId, order] of Object.entries(data.pageOrder)) {
+      if (!isSitePageId(pageId) || typeof order !== "number" || Number.isNaN(order)) continue;
+      cleaned[pageId] = order;
+    }
+    meta.pageOrder = cleaned;
+  }
 
   fs.writeFileSync(metaPath, `${JSON.stringify(meta, null, 2)}\n`, "utf-8");
   return readProjectMeta(dir);

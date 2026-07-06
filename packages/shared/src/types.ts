@@ -19,6 +19,10 @@ export type Role = {
   permissions: Permissions;
 };
 
+export type PagePhotos = Partial<Record<string, string[]>>;
+
+export type PageOrder = Partial<Record<string, number>>;
+
 export type Section = {
   id: string;
   name: string;
@@ -35,6 +39,12 @@ export type Subsection = {
   tags?: string[];
   thumbnail?: string | null;
   mediaOrder?: string[];
+  /** Page IDs where this subcategory is shown (e.g. landing). */
+  visibleOnPages?: string[];
+  /** Selected photo filenames per page ID. */
+  photosByPage?: PagePhotos;
+  /** Sort order per page ID (lower = earlier). */
+  pageOrder?: PageOrder;
 };
 
 export type ProjectMedia = {
@@ -47,6 +57,9 @@ export type ProjectMedia = {
   locationLink?: string;
   siteEngineer?: { name?: string; phone?: string };
   tags?: string[];
+  visibleOnPages?: string[];
+  photosByPage?: PagePhotos;
+  pageOrder?: PageOrder;
 };
 
 export type Manifest = {

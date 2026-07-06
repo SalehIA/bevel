@@ -16,10 +16,13 @@ import CloseIcon from "@mui/icons-material/Close";
 import MenuIcon from "@mui/icons-material/Menu";
 import StarIcon from "@mui/icons-material/Star";
 import StarBorderIcon from "@mui/icons-material/StarBorder";
+import CheckBoxIcon from "@mui/icons-material/CheckBox";
+import CheckBoxOutlineBlankIcon from "@mui/icons-material/CheckBoxOutlineBlank";
 import UploadFileOutlinedIcon from "@mui/icons-material/UploadFileOutlined";
 import DataGrid from "@/components/admin/DataGrid";
 import { LOGO_CLASS, LOGO_SRC } from "@/lib/branding";
 import { buildMediaPath } from "@/lib/media";
+import { LANDING_PAGE_ID, SITE_PAGES } from "@/lib/site-pages";
 import type { Permissions, PublicUser, Role, Section, Subsection } from "@/lib/types";
 
 const navIconClass = "shrink-0 text-[1.25rem]";
@@ -90,6 +93,9 @@ export default function AdminDashboard({ user }: { user: PublicUser }) {
     phone: "",
     tags: "",
   });
+  const [visibleOnPages, setVisibleOnPages] = useState<string[]>([]);
+  const [photosByPage, setPhotosByPage] = useState<Record<string, string[]>>({});
+  const [landingOrder, setLandingOrder] = useState("");
 
   const [roleForm, setRoleForm] = useState({
     id: "",
@@ -164,6 +170,11 @@ export default function AdminDashboard({ user }: { user: PublicUser }) {
     );
     setFiles(data.files || []);
     setMediaThumbnail(data.thumbnail || null);
+    setVisibleOnPages(data.visibleOnPages || sub.visibleOnPages || []);
+    setPhotosByPage(data.photosByPage || sub.photosByPage || {});
+    setLandingOrder(
+      String(data.pageOrder?.[LANDING_PAGE_ID] ?? sub.pageOrder?.[LANDING_PAGE_ID] ?? "")
+    );
   };
 
   const mediaApi = (row: SubRow, path: string, options: RequestInit = {}) =>
@@ -218,6 +229,28 @@ export default function AdminDashboard({ user }: { user: PublicUser }) {
       notify(err instanceof Error ? err.message : "فشل", true);
     }
   };
+
+  const toggleLandingPhoto = async (fileName: string, enabled: boolean) => {
+    const row = subRows.find((r) => r.key === selectedSubKey);
+    if (!row) return;
+    try {
+      await mediaApi(row, "", {
+        method: "PATCH",
+        body: JSON.stringify({
+          action: "togglePagePhoto",
+          pageId: LANDING_PAGE_ID,
+          name: fileName,
+          enabled,
+        }),
+      });
+      await loadSubsectionDetail(row);
+    } catch (err) {
+      notify(err instanceof Error ? err.message : "فشل", true);
+    }
+  };
+
+  const landingPhotos = photosByPage[LANDING_PAGE_ID] || [];
+  const showLandingPhotos = visibleOnPages.includes(LANDING_PAGE_ID);
 
   const saveSelectedSection = async () => {
     if (!selectedSectionId) return;
@@ -658,6 +691,11 @@ export default function AdminDashboard({ user }: { user: PublicUser }) {
                                 .split(/[,،]/)
                                 .map((t) => t.trim())
                                 .filter(Boolean),
+                              visibleOnPages,
+                              photosByPage,
+                              pageOrder: landingOrder.trim()
+                                ? { [LANDING_PAGE_ID]: Number(landingOrder) }
+                                : {},
                             }),
                           }
                         );
@@ -669,6 +707,42 @@ export default function AdminDashboard({ user }: { user: PublicUser }) {
                     }}
                   >
                     <h3 className="font-bold text-brand">{selectedSubRow.name}</h3>
+
+                    <div className="space-y-2 rounded-xl border border-black/10 bg-surface/60 p-3">
+                      <p className="text-sm font-semibold text-brand">عرض في الصفحات</p>
+                      {SITE_PAGES.map((page) => (
+                        <label key={page.id} className="flex cursor-pointer items-center gap-2 text-sm">
+                          <input
+                            type="checkbox"
+                            checked={visibleOnPages.includes(page.id)}
+                            onChange={(e) => {
+                              setVisibleOnPages((prev) =>
+                                e.target.checked
+                                  ? [...prev, page.id]
+                                  : prev.filter((id) => id !== page.id)
+                              );
+                            }}
+                            className="h-4 w-4 accent-brand"
+                          />
+                          <span>{page.label}</span>
+                        </label>
+                      ))}
+                      {showLandingPhotos ? (
+                        <label className="block space-y-1 border-t border-black/10 pt-3">
+                          <span className="text-sm font-semibold">ترتيب العرض في الصفحة الرئيسية</span>
+                          <input
+                            type="number"
+                            min={1}
+                            value={landingOrder}
+                            onChange={(e) => setLandingOrder(e.target.value)}
+                            placeholder="1"
+                            className="w-24 rounded-xl border border-black/10 px-3 py-2"
+                          />
+                          <p className="text-xs text-muted">رقم أصغر = يظهر أولاً في الصفحة الرئيسية</p>
+                        </label>
+                      ) : null}
+                    </div>
+
                     {(
                       [
                         ["name", "الاسم"],
@@ -745,6 +819,12 @@ export default function AdminDashboard({ user }: { user: PublicUser }) {
 
                   <div className="min-w-0 space-y-3">
                     <h3 className="font-bold text-brand">الصور والفيديو</h3>
+                    {showLandingPhotos ? (
+                      <p className="text-xs leading-relaxed text-muted">
+                        فعّل «الصفحة الرئيسية» أعلاه، ثم حدّد الصور عبر عمود «الرئيسية» في
+                        الجدول. بدون تحديد صور، تُستخدم أول 10 صور تلقائيًا.
+                      </p>
+                    ) : null}
                     <input
                       ref={fileInputRef}
                       type="file"
@@ -787,11 +867,47 @@ export default function AdminDashboard({ user }: { user: PublicUser }) {
                                   مصغرة
                                 </span>
                               ) : null}
+                              {showLandingPhotos && landingPhotos.includes(file.name) ? (
+                                <span className="absolute top-0 start-0 rounded-br bg-brand px-1 text-[10px] text-white">
+                                  رئيسية
+                                </span>
+                              ) : null}
                             </div>
                           ),
                         },
                         { key: "name", header: "الملف" },
                         { key: "kind", header: "النوع" },
+                        ...(showLandingPhotos
+                          ? [
+                              {
+                                key: "landing",
+                                header: "الرئيسية",
+                                className: "whitespace-nowrap",
+                                render: (file: { name: string; kind: string }) =>
+                                  file.kind === "image" ? (
+                                    <button
+                                      type="button"
+                                      title="عرض في الصفحة الرئيسية"
+                                      className="rounded border border-black/10 p-1 hover:bg-surface"
+                                      onClick={() =>
+                                        toggleLandingPhoto(
+                                          file.name,
+                                          !landingPhotos.includes(file.name)
+                                        )
+                                      }
+                                    >
+                                      {landingPhotos.includes(file.name) ? (
+                                        <CheckBoxIcon sx={{ fontSize: 18 }} className="text-brand" />
+                                      ) : (
+                                        <CheckBoxOutlineBlankIcon sx={{ fontSize: 18 }} />
+                                      )}
+                                    </button>
+                                  ) : (
+                                    <span className="text-xs text-muted">—</span>
+                                  ),
+                              },
+                            ]
+                          : []),
                         {
                           key: "actions",
                           header: "إجراءات",

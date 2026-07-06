@@ -16,6 +16,7 @@ import {
   subsectionDir,
   writeSubsectionMeta,
 } from "@/lib/sections";
+import { isSitePageId } from "@/lib/site-pages";
 
 type Params = { params: Promise<{ id: string; slug: string }> };
 
@@ -91,6 +92,26 @@ export async function PATCH(request: Request, { params }: Params) {
         return Response.json({ error: "Invalid thumbnail" }, { status: 400 });
       }
       writeSubsectionMeta(section.slug, slug, { thumbnail: name });
+    } else if (action === "togglePagePhoto") {
+      const pageId = String(body.pageId || "").trim();
+      const name = String(body.name || "").trim();
+      const enabled = Boolean(body.enabled);
+      if (!isSitePageId(pageId)) {
+        return Response.json({ error: "Invalid page" }, { status: 400 });
+      }
+      const file = files.find((f) => f.name === name);
+      if (!file || file.kind !== "image") {
+        return Response.json({ error: "Invalid photo" }, { status: 400 });
+      }
+
+      const photosByPage = { ...(meta.photosByPage || {}) };
+      const current = [...(photosByPage[pageId] || [])];
+      const has = current.includes(name);
+      if (enabled && !has) current.push(name);
+      if (!enabled && has) photosByPage[pageId] = current.filter((item) => item !== name);
+      else if (enabled) photosByPage[pageId] = current;
+
+      writeSubsectionMeta(section.slug, slug, { photosByPage });
     } else {
       return Response.json({ error: "Unknown action" }, { status: 400 });
     }
@@ -101,6 +122,7 @@ export async function PATCH(request: Request, { params }: Params) {
       ok: true,
       thumbnail: updated.thumbnail,
       mediaOrder: updated.mediaOrder,
+      photosByPage: updated.photosByPage || {},
     });
   } catch (error) {
     return Response.json(
@@ -139,6 +161,16 @@ export async function DELETE(request: Request, { params }: Params) {
     const mediaOrder = (meta.mediaOrder || []).filter((item: string) => item !== name);
     const patch: Record<string, unknown> = { mediaOrder };
     if (meta.thumbnail === name) patch.thumbnail = null;
+
+    const photosByPage = { ...(meta.photosByPage || {}) };
+    let photosChanged = false;
+    for (const [pageId, pagePhotos] of Object.entries(photosByPage)) {
+      if (!Array.isArray(pagePhotos) || !pagePhotos.includes(name)) continue;
+      photosByPage[pageId] = pagePhotos.filter((item) => item !== name);
+      photosChanged = true;
+    }
+    if (photosChanged) patch.photosByPage = photosByPage;
+
     writeSubsectionMeta(section.slug, slug, patch);
 
     writeManifest();
